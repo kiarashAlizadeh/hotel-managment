@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+  text-decoration: none !important;
+  @apply text-black;
+}
+
+a.nav-link.active {
+  @apply text-xl font-bold text-[#14274A] !important;
+}
