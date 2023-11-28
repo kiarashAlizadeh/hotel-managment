@@ -1,12 +1,12 @@
 import MyNavbar from "../components/MyNavbar"
 import Footer from "../components/Footer"
-import Reserve from "../components/Reserve"
+import Confirm from "../components/Confirm"
 
 function Reservation() {
   return (
     <>
       <MyNavbar />
-      <Reserve />
+      <Confirm />
       <Footer />
     </>
   )

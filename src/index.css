@@ -10,3 +10,7 @@ a {
 a.nav-link.active {
   @apply text-xl font-bold text-[#14274A] !important;
 }
+
+footer a {
+  @apply text-white !important;
+}

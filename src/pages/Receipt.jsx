@@ -1,15 +1,15 @@
 import MyNavbar from "../components/MyNavbar"
 import Footer from "../components/Footer"
-import Reserve from "../components/Reserve"
+import ReciptCom from "../components/ReciptCom"
 
-function Reservation() {
+function Recipt() {
   return (
     <>
       <MyNavbar />
-      <Reserve />
+      <ReciptCom />
       <Footer />
     </>
   )
 }
 
-export default Reservation
+export default Recipt

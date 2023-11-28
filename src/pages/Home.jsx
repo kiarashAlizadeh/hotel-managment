@@ -1,10 +1,12 @@
 import MyNavbar from "../components/MyNavbar"
 import Footer from "../components/Footer"
+import Header from "../components/Header"
 
 function Home() {
   return (
-    <div className="h-screen flex flex-col justify-between">
+    <div className="flex h-screen flex-col justify-between">
       <MyNavbar />
+      <Header />
       <Footer />
     </div>
   )

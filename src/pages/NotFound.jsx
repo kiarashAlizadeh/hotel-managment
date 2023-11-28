@@ -5,6 +5,7 @@ function NotFound() {
   return (
     <>
       <MyNavbar />
+      <div>404 page</div>
       <Footer />
     </>
   )
