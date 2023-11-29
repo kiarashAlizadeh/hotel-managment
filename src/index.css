@@ -14,3 +14,17 @@ a.nav-link.active {
 footer a {
   @apply text-white !important;
 }
+
+body {
+  @apply bg-gray-300 !important;
+}
+
+/* printing recipt */
+@media print {
+  body * {
+    display: none;
+  }
+  .print-content, .print-content * {
+    display: block;
+  }
+}

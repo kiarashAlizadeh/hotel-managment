@@ -1,15 +1,13 @@
 import MyNavbar from "../components/MyNavbar"
 import Footer from "../components/Footer"
-import SignUpCom from "../components/SignUpCom"
 
-function SignUp() {
+function Otp() {
   return (
-    <>
+    <div className="flex h-screen flex-col justify-between">
       <MyNavbar />
-      <SignUpCom />
       <Footer />
-    </>
+    </div>
   )
 }
 
-export default SignUp
+export default Otp

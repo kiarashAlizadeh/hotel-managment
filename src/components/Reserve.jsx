@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function Reserve() {
   return (
     <>
-      <section className="mx-auto mb-10 mt-3 flex  w-fit select-none flex-col items-center justify-center rounded-lg bg-blue-100 px-10 sm:mt-0 sm:bg-none md:mb-10 md:mt-3 md:h-[672px] md:justify-center lg:mx-24 lg:h-full lg:py-10">
+      <section className="mx-auto mb-10 mt-3 flex  w-fit select-none flex-col items-center justify-center rounded-lg px-10 sm:mt-0 sm:bg-none md:mb-10 md:mt-3 md:h-[672px] md:justify-center lg:mx-24 lg:h-full lg:py-10">
         <form action="" className="flex flex-col items-start gap-y-4">
           <h1 className="text-3xl font-black sm:text-5xl">رزرو اتاق</h1>
           <span className="flex w-full flex-col gap-y-5">

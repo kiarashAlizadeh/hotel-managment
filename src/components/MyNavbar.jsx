@@ -16,7 +16,7 @@ function MyNavbar() {
   const expand = "lg"
   return (
     <>
-      <Navbar key={expand} expand={expand} className="w-color mb-3">
+      <Navbar key={expand} expand={expand} className="w-color mb-3 bg-white">
         <Container>
           <Navbar.Brand className="flex items-center gap-x-2">
             <img src={logo} alt="" />
