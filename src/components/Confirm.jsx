@@ -11,7 +11,7 @@ function Confirm() {
       cancelButtonText: "لغو",
     }).then(function (isConfirm) {
       if (isConfirm.isConfirmed) {
-        window.location.assign("/Receipt")
+        window.location.assign("/Pay")
       }
     })
   }
