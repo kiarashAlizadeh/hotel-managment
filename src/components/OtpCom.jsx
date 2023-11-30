@@ -5,7 +5,7 @@ function OtpCom() {
   const [otpValues, setOtpValues] = useState(["", "", "", ""])
   const [otpComplete, setOtpComplete] = useState("")
   const otpFieldsRef = useRef([])
-  const otpCorrect = "3324" // اضافه کردن متغیر برای کد otp صحیح
+  const otpCorrect = "9876" // متغیر برای کد otp صحیح
 
   const handleInput = (index, value) => {
     if (value.length > 1) {
@@ -15,9 +15,10 @@ function OtpCom() {
     newOtpValues[index] = value
     setOtpValues(newOtpValues)
     updateOtpComplete(newOtpValues)
-    validateOtpComplete(otpComplete)
     if (value.length === 1 && index < otpValues.length - 1) {
-      otpFieldsRef.current[index + 1].focus()
+      setTimeout(() => {
+        otpFieldsRef.current[index + 1].focus()
+      }, 10)
     }
   }
 
@@ -27,33 +28,30 @@ function OtpCom() {
       newOtpValues[index] = ""
       setOtpValues(newOtpValues)
       updateOtpComplete(newOtpValues)
-      validateOtpComplete(otpComplete)
     } else if (index > 0) {
       otpFieldsRef.current[index - 1].focus()
     }
   }
 
   const updateOtpComplete = (newOtpValues) => {
-    // تعریف تابع برای بروزرسانی کد otp کامل
-    const newOtpComplete = newOtpValues.join("") // اتصال 4 رقم انفرادی به یک رشته
-    setOtpComplete(newOtpComplete) // بروزرسانی state با رشته جدید
+    const newOtpComplete = newOtpValues.join("")
+    setOtpComplete(newOtpComplete)
   }
 
-  const validateOtpComplete = (otpComplete) => {
-    // تعریف تابع برای بررسی معتبر بودن کد otp کامل
-    if (otpComplete === "3324") {
-      // اگر کد otp کامل برابر 3324 باشد
-      console.log("ok") // نمایش ok در کنسول
+  const validateOtpComplete = () => {
+    if (otpComplete === otpCorrect) {
+      return true
     }
+    return false
   }
 
   const otpHandler = () => {
-    if (otpComplete === otpCorrect) {
+    if (validateOtpComplete()) {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer
@@ -66,8 +64,9 @@ function OtpCom() {
       })
       setTimeout(() => {
         window.location.assign("/Reservation")
-      }, 2000)
+      }, 1000)
     } else {
+      setOtpValues(["", "", "", ""])
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -85,6 +84,14 @@ function OtpCom() {
       })
     }
   }
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && otpComplete.length === 4) {
+      e.preventDefault()
+      otpHandler()
+    }
+  }
+
   let phoneNumber = "091208***23"
   return (
     <>
@@ -102,10 +109,11 @@ function OtpCom() {
               name="otp1"
               type="number"
               autoComplete="off"
-              className="w-10 rounded-xl px-2 py-1 text-center sm:h-16 sm:w-16 sm:text-xl  md:h-24 md:w-24 md:text-3xl"
+              className="w-10 rounded-xl px-2 py-1 text-center sm:h-16 sm:w-16 sm:text-xl md:h-24 md:w-24 md:text-3xl"
               value={value}
               onChange={(e) => handleInput(index, e.target.value)}
               onKeyDown={(e) => {
+                handleKeyPress(e)
                 if (e.key === "Backspace") {
                   handleBackspace(index)
                 }
@@ -116,12 +124,22 @@ function OtpCom() {
               tabIndex="1"
               maxLength="1"
               key={index}
-              autofocus
+              disabled={
+                index !== 0 &&
+                otpValues[index - 1] === "" &&
+                otpValues[index] === ""
+              }
+              autoFocus={index === 0}
             />
           ))}
         </div>
         <button
-          className="mt-4 w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-2 text-center text-white hover:bg-blue-700 sm:w-[301px] lg:w-[429px] lg:text-3xl"
+          className={`mt-4 w-full cursor-pointer rounded-lg px-2 py-2 text-center text-white sm:w-[301px] lg:w-[429px] lg:text-3xl ${
+            otpComplete.length !== 4
+              ? "disabled cursor-not-allowed bg-gray-400"
+              : "bg-blue-500 hover:bg-blue-700"
+          }`}
+          disabled={otpComplete.length !== 4}
           onClick={otpHandler}
         >
           ثبت

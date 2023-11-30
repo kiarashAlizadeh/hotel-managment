@@ -18,7 +18,7 @@ function SignUpCom() {
     })
     Toast.fire({
       icon: "info",
-      title: "با موفقیت در سایت ثبت نام شده و کد ورود برای شما پیامک شد!",
+      title: "کد ورود برای شما پیامک شد!",
     })
     setTimeout(() => {
       window.location.assign("/Otp")
