@@ -17,11 +17,11 @@ function SignUpCom() {
       },
     })
     Toast.fire({
-      icon: "success",
-      title: "با موفقیت در سایت ثبت نام کرده اید!!",
+      icon: "info",
+      title: "با موفقیت در سایت ثبت نام شده و کد ورود برای شما پیامک شد!",
     })
     setTimeout(() => {
-      window.location.assign("/Reservation")
+      window.location.assign("/Otp")
     }, 2000)
   }
   return (
