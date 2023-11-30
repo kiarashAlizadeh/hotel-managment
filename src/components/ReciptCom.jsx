@@ -11,7 +11,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
         ref={ref}
       >
         <img src={logo} alt="" />
-        <h1 className="text-3xl font-black sm:text-6xl mt-2">رسید پرداخت</h1>
+        <h1 className="mt-2 text-3xl font-black sm:text-6xl">رسید پرداخت</h1>
         <div className="mb-5 mt-3 flex flex-wrap gap-x-20">
           <div className="flex flex-col items-start gap-y-4">
             <span className="mb-3 flex w-full flex-col gap-y-5">
@@ -95,7 +95,7 @@ function ReciptCom() {
 
   return (
     <>
-      <div className="mb-10 mt-7 px-3 flex flex-col items-center">
+      <div className="mb-10 mt-7 flex flex-col items-center px-3">
         <ComponentToPrint ref={printRef} />
         <button
           className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-2 text-center text-white hover:bg-blue-700 sm:w-[301px]"

@@ -1,29 +1,131 @@
+import { useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
 import signup from "../assets/images/signUp.png"
 
 function SignUpCom() {
-  const signUpHandler = () => {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer
-        toast.onmouseleave = Swal.resumeTimer
-      },
-    })
-    Toast.fire({
-      icon: "info",
-      title: "کد ورود برای شما پیامک شد!",
-    })
-    setTimeout(() => {
-      window.location.assign("/Otp")
-    }, 2000)
+  // states
+  const [Name, nameVal] = useState("")
+  const [Family, familyVal] = useState("")
+  const [Gender, genderVal] = useState("")
+  const [NationalNumber, nationalNumberVal] = useState("")
+  const [MobileNumber, mobileNumberVal] = useState("")
+  const [Email, emailVal] = useState("")
+  const [Pass, passVal] = useState("")
+  const [ConfirmPass, confirmPassVal] = useState("")
+
+  // refs
+  const nameRef = useRef()
+  const familyNameRef = useRef()
+  const genderRef = useRef()
+  const nationalNumberRef = useRef()
+  const mobileNumberRef = useRef()
+  const emailRef = useRef()
+  const passRef = useRef()
+  const confirmPassRef = useRef()
+
+  const valueHandler = () => {
+    nameVal(nameRef.current.value)
+    familyVal(familyNameRef.current.value)
+    genderVal(genderRef.current.value)
+    nationalNumberVal(nationalNumberRef.current.value)
+    mobileNumberVal(mobileNumberRef.current.value)
+    emailVal(emailRef.current.value)
+    passVal(passRef.current.value)
+    confirmPassVal(confirmPassRef.current.value)
   }
+
+  const localStorageHandler = () => {
+    let storedData = localStorage.getItem("user-Data")
+    let userData = []
+
+    if (storedData) {
+      userData = JSON.parse(storedData)
+    }
+
+    userData.push({
+      name: Name,
+      family: Family,
+      gender: Gender,
+      nationalNumber: NationalNumber,
+      mobileNumber: MobileNumber,
+      email: Email,
+      password: Pass,
+      reserves: [],
+    })
+    let jsonData = JSON.stringify(userData)
+    localStorage.setItem("user-Data", jsonData)
+    localStorage.setItem("is-Login", true)
+    localStorage.setItem("user-Login", Name)
+  }
+
+  const signUpHandler = () => {
+    valueHandler()
+    if (
+      Name === "" ||
+      Family === "" ||
+      Gender === "" ||
+      NationalNumber === "" ||
+      MobileNumber === "" ||
+      Email === "" ||
+      Pass === "" ||
+      ConfirmPass === ""
+    ) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center-center",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer
+          toast.onmouseleave = Swal.resumeTimer
+        },
+      })
+      Toast.fire({
+        icon: "error",
+        title: "لطفا تمامی مقادیر فرم را پر کنید!",
+      })
+    } else if (Pass !== ConfirmPass) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center-center",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer
+          toast.onmouseleave = Swal.resumeTimer
+        },
+      })
+      Toast.fire({
+        icon: "error",
+        title: "رمز عبور شما با تکرار آن همخوانی ندارد!",
+      })
+    } else {
+      localStorageHandler()
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer
+          toast.onmouseleave = Swal.resumeTimer
+        },
+      })
+      Toast.fire({
+        icon: "info",
+        title: "کد ورود برای شما پیامک شد!",
+      })
+      setTimeout(() => {
+        window.location.assign("/Otp")
+      }, 2000)
+    }
+  }
+
   return (
     <>
       <main>
@@ -48,6 +150,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="نام"
+                  ref={nameRef}
                 />
               </span>
               <span className="w-full">
@@ -56,11 +159,15 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="نام خانوادگی"
+                  ref={familyNameRef}
                 />
               </span>
               <span className="flex w-full flex-col gap-x-4">
                 <label>جنسیت</label>
-                <select className="rounded-2xl border-none py-1 text-center shadow-inner shadow-black/30">
+                <select
+                  className="rounded-2xl border-none py-1 text-center shadow-inner shadow-black/30"
+                  ref={genderRef}
+                >
                   <option value="آقا">آقا</option>
                   <option value="خانم">خانم</option>
                 </select>
@@ -71,6 +178,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="کد ملی"
+                  ref={nationalNumberRef}
                 />
               </span>
               <span className="w-full">
@@ -79,6 +187,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="تلفن همراه"
+                  ref={mobileNumberRef}
                 />
               </span>
               <span className="w-full">
@@ -91,6 +200,7 @@ function SignUpCom() {
                   name="emailmobilenumber"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="ایمیل"
+                  ref={emailRef}
                 />
               </span>
               <span className="w-full" x-data="{ show: true }">
@@ -100,8 +210,9 @@ function SignUpCom() {
                 <div className="relative">
                   <input
                     placeholder="رمز عبور"
-                    type="show ? 'password' : 'text'"
+                    type="password"
                     className="input block w-full  rounded-2xl px-2 py-1"
+                    ref={passRef}
                   />
                 </div>
               </span>
@@ -112,8 +223,9 @@ function SignUpCom() {
                 <div className="relative">
                   <input
                     placeholder="تکرار رمز عبور"
-                    type="show ? 'password' : 'text'"
+                    type="password"
                     className="input block w-full  rounded-2xl px-2 py-1"
+                    ref={confirmPassRef}
                   />
                 </div>
               </span>

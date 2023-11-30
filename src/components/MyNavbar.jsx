@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom"
+import Swal from "sweetalert2"
 
 // bootstrap
 import Container from "react-bootstrap/Container"
@@ -13,7 +14,31 @@ import person from "../assets/icons/navbar/person.png"
 import phone from "../assets/icons/navbar/phone.svg"
 
 function MyNavbar() {
-  const expand = "lg"
+  var isLogin = localStorage.getItem("is-Login")
+  var whoisLogin = localStorage.getItem("user-Login")
+  const exitHandler = () => {
+    localStorage.setItem("is-Login", "")
+    localStorage.setItem("user-Login", "")
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "center-center",
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer
+        toast.onmouseleave = Swal.resumeTimer
+      },
+    })
+    Toast.fire({
+      icon: "info",
+      title: "از سایت خارج شدید!",
+    })
+    setTimeout(() => {
+      window.location.assign("/SignIn")
+    }, 2000)
+  }
+  const expand = "md"
   return (
     <>
       <Navbar key={expand} expand={expand} className="w-color mb-3 bg-white">
@@ -54,7 +79,7 @@ function MyNavbar() {
                   </NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to="/a" className="nav-link">
-                  رویداد ها
+                  تاریخچه رزرو ها
                 </NavLink>
                 <NavLink to="/a" className="nav-link">
                   تماس با ما
@@ -71,13 +96,34 @@ function MyNavbar() {
                   <img src={phone} alt="phone" />
                   021-1234
                 </Link>
-                <Link
-                  to="/SignIn"
-                  className="flex items-center gap-x-1 text-black"
-                >
-                  <img src={person} alt="person" />
-                  ورود/ثبت نام
-                </Link>
+                {(function () {
+                  if (isLogin) {
+                    return (
+                      <div className="mt-2 flex flex-col items-center gap-y-3 md:mx-3 md:mt-0 md:flex-row md:gap-x-2">
+                        <span>
+                          سلام <span className="font-bold">{whoisLogin}</span>{" "}
+                          خوش آمدید!
+                        </span>
+                        <button
+                          className="rounded-xl bg-red-600 px-3 py-2 text-white"
+                          onClick={exitHandler}
+                        >
+                          خروج
+                        </button>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <Link
+                        to="/SignIn"
+                        className="flex items-center gap-x-1 text-black"
+                      >
+                        <img src={person} alt="person" />
+                        ورود/ثبت نام
+                      </Link>
+                    )
+                  }
+                })()}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
