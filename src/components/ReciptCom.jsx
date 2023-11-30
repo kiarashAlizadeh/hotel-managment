@@ -4,6 +4,25 @@ import { useReactToPrint } from "react-to-print"
 import logo from "../assets/icons/navbar/logo.svg"
 
 const ComponentToPrint = React.forwardRef((props, ref) => {
+  let storedData = localStorage.getItem("user-Data")
+  var userLogin = localStorage.getItem("user-Login")
+  let userData = JSON.parse(storedData)
+  let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
+
+  const name = userData[userExistsIndex].name
+  const family = userData[userExistsIndex].family
+  const fullName = name + " " + family
+
+  if (userData[userExistsIndex].name === "آقا") {
+    const genderName = " آقای" + fullName
+  } else {
+    const genderName = " خانم" + fullName
+  }
+
+  const nationalNumber = userData[userExistsIndex].nationalNumber
+  const mobileNumber = userData[userExistsIndex].mobileNumber
+  const email = userData[userExistsIndex].email
+
   return (
     <>
       <div
@@ -18,22 +37,20 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">نام و نام خانوادگی:</span>
                 <span className="text-xl font-black lg:text-3xl">
-                  کیارش علیزاده
+                  {fullName}
                 </span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">کد ملی:</span>
-                <span className="font-black">0026547885</span>
+                <span className="font-black">{nationalNumber}</span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تلفن همراه:</span>
-                <span className="font-black">09120000000</span>
+                <span className="font-black">{mobileNumber}</span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">ایمیل:</span>
-                <span className="font-bold lg:font-black">
-                  Kiarash_alizadeh@yahoo.com
-                </span>
+                <span className="font-bold lg:font-black">{email} </span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تاریخ پرداخت:</span>

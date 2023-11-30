@@ -2,6 +2,14 @@ import React, { useState, useRef } from "react"
 import Swal from "sweetalert2"
 
 function OtpCom() {
+  let storedData = localStorage.getItem("user-Data")
+  var userLogin = localStorage.getItem("user-Login")
+
+  let userData = JSON.parse(storedData)
+  let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
+
+  const mobileNumber = userData[userExistsIndex].mobileNumber
+
   const [otpValues, setOtpValues] = useState(["", "", "", ""])
   const [otpComplete, setOtpComplete] = useState("")
   const otpFieldsRef = useRef([])
@@ -92,13 +100,12 @@ function OtpCom() {
     }
   }
 
-  let phoneNumber = "091208***23"
   return (
     <>
       <div className="mb-10 mt-5 flex flex-col items-center px-5">
         <h2 className="mb-5 text-center text-xl sm:text-3xl md:text-3xl">
           کد پیامک شده به شماره
-          <br className="md:hidden" /> <bdo dir="ltr">{phoneNumber}</bdo>{" "}
+          <br className="md:hidden" /> <bdo dir="ltr">{mobileNumber}</bdo>{" "}
           {"\u00A0"}
           <br className="md:hidden" />
           را وارد کنید:
