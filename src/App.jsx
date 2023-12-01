@@ -9,6 +9,7 @@ import Reservation from "./pages/Reservation"
 import Confirmation from "./pages/Confirmation"
 import Pay from "./pages/Pay/Pay"
 import Receipt from "./pages/Receipt"
+import History from "./pages/History"
 import NotFound from "./pages/NotFound"
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Confirmation" element={<Confirmation />} />
         <Route path="/Pay" element={<Pay />} />
         <Route path="/Receipt" element={<Receipt />} />
+        <Route path="/History" element={<History />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

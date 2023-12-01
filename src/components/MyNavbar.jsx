@@ -78,7 +78,7 @@ function MyNavbar() {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown>
-                <NavLink to="/a" className="nav-link">
+                <NavLink to="/History" className="nav-link">
                   تاریخچه رزرو ها
                 </NavLink>
                 <NavLink to="/a" className="nav-link">

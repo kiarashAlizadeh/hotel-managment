@@ -98,6 +98,15 @@ function Reserve() {
       let userExistsIndex = userData.findIndex(
         (user) => user.name === userLogin
       )
+
+      const PayDay = new Date()
+
+      function generateRandomNumber() {
+        const randomNumber = Math.floor(1000000 + Math.random() * 9000000) // ایجاد یک عدد تصادفی بین 1000000 تا 9999999
+        return randomNumber.toString() // تبدیل عدد به رشته
+      }
+      const PayNumber = generateRandomNumber()
+
       const newReserve = {
         arrivalDate: ArrivalDate,
         departureDate: DepartureDate,
@@ -105,6 +114,8 @@ function Reserve() {
         numberOfPeople: NumberOfPeople,
         numberOfRooms: NumberOfRooms,
         roomType: RoomType,
+        payDay: PayDay,
+        payNumber: PayNumber,
         price: Price,
       }
       userData[userExistsIndex].reserves.push(newReserve)
