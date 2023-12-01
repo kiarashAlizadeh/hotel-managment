@@ -2,21 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-[#3C4D41] !important;
+}
+
 a {
   text-decoration: none !important;
-  @apply text-black;
+  @apply text-[#232E26];
+}
+nav a {
+  text-decoration: none !important;
+  @apply text-[#232E26] lg:text-lg lg:font-semibold !important;
 }
 
 a.nav-link.active {
-  @apply text-xl font-bold text-[#14274A] !important;
+  @apply font-bold text-[#232E26] lg:text-xl !important;
 }
+a.nav-link {
+  @apply text-[#232E26] hover:opacity-80 !important;
+}
+
+div .container {
+  @apply px-6 md:px-0 !important;
+}
+
+/* footer {
+  @apply bg-[url(/assets/images/bg-footer.svg)] !important;
+} */
 
 footer a {
-  @apply text-white !important;
+  @apply text-[#D9EFDE] !important;
 }
 
-body {
-  @apply bg-gray-300 !important;
+#SignIn {
+  @apply flex items-center gap-x-1 rounded-full bg-[#232E26] px-4 py-3 text-[#D9EFDE] hover:opacity-70 !important;
 }
 
 /* printing recipt */

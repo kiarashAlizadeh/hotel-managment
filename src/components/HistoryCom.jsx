@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import { useReactToPrint } from "react-to-print"
 import { Link } from "react-router-dom"
 
-import logo from "../assets/icons/navbar/logo.svg"
+import history from "../assets/images/history.png"
 
 const ComponentToPrint = React.forwardRef((props, ref) => {
   var isLogin = localStorage.getItem("is-Login")
@@ -35,12 +35,11 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
           className="print-content mx-auto flex w-fit flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:justify-center lg:px-10 lg:py-10 lg:text-2xl"
           ref={ref}
         >
-          <img src={logo} alt="" />
           <h1 className="mt-2 text-3xl font-black sm:text-6xl">
             تاریخچه رزرو ها
           </h1>
-          <div className="mb-5 mt-5 flex flex-col items-center gap-y-20">
-            <span className="flex gap-x-5">
+          <div className="mb-5 mt-2 flex flex-col items-center gap-y-10">
+            <span className="flex gap-x-5 flex-col md:flex-row flex-wrap">
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">نام و نام خانوادگی:</span>
                 <span className="text-xl font-black lg:text-3xl">
@@ -63,7 +62,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
             <div className="flex w-full flex-wrap items-center justify-center gap-20">
               {userData[userExistsIndex].reserves.map((reserve) => {
                 return (
-                  <span className="flex flex-col gap-y-5">
+                  <span className="flex flex-col gap-y-5 border-2 border-[#232e26] rounded-3xl py-3 px-3">
                     <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                       <span className="text-gray-600">تاریخ ورود:</span>
                       <span className="font-black">
@@ -157,14 +156,17 @@ function HistoryCom() {
   })
   return (
     <>
-      <div className="mb-10 mt-7 flex flex-col items-center px-3">
-        <ComponentToPrint ref={printHistoryRef} />
-        <button
-          className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-2 text-center text-white hover:bg-blue-700 sm:w-[301px]"
-          onClick={printHandler}
-        >
-          چاپ تاریخچه رزرو ها
-        </button>
+      <div className="mx-2 mb-5 rounded-3xl bg-[#D9EFDE] py-3">
+        <div className="mb-10 mt-7 flex flex-col items-center px-3">
+          <img src={history} alt="" className="w-28 lg:max-w-64"/>
+          <ComponentToPrint ref={printHistoryRef} />
+          <button
+            className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
+            onClick={printHandler}
+          >
+            چاپ تاریخچه رزرو ها
+          </button>
+        </div>
       </div>
     </>
   )

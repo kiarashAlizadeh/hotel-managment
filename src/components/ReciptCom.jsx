@@ -45,10 +45,10 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
   return (
     <>
       <div
-        className="print-content mx-auto flex w-fit select-none flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:h-[672px] md:justify-center lg:h-full lg:px-10 lg:py-10 lg:text-2xl"
+        className="print-content mx-auto flex w-fit select-none flex-col items-center justify-center rounded-lg  px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:h-[672px] md:justify-center lg:h-full lg:text-2xl"
         ref={ref}
       >
-        <img src={logo} alt="" />
+        <img src={logo} alt="" className="w-52" />
         <h1 className="mt-2 text-3xl font-black sm:text-6xl">رسید پرداخت</h1>
         <div className="mb-5 mt-3 flex flex-wrap gap-x-20">
           <div className="flex flex-col items-start gap-y-4">
@@ -126,14 +126,18 @@ function ReciptCom() {
   })
   return (
     <>
-      <div className="mb-10 mt-7 flex flex-col items-center px-3">
-        <ComponentToPrint ref={printRef} />
-        <button
-          className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-2 text-center text-white hover:bg-blue-700 sm:w-[301px]"
-          onClick={printHandler}
-        >
-          چاپ رسید
-        </button>
+      <div className="mx-2 mb-5 rounded-3xl bg-[#D9EFDE] py-3">
+        <div className="flex flex-col items-center px-3">
+          <div className="my-5 border-2 border-[#232e26] px-10 pt-10 rounded-3xl">
+            <ComponentToPrint ref={printRef} />
+          </div>
+          <button
+            className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
+            onClick={printHandler}
+          >
+            چاپ رسید
+          </button>
+        </div>
       </div>
     </>
   )

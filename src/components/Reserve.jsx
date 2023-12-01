@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
+import calendar from "../assets/images/reserve.png"
+
 function Reserve() {
   // states
   const [ArrivalDate, arrivalDateVal] = useState("")
@@ -127,78 +129,83 @@ function Reserve() {
   if (isLogin) {
     return (
       <>
-        <section className="mx-auto mb-10 mt-3 flex  w-fit select-none flex-col items-center justify-center rounded-lg px-10 sm:mt-0 sm:bg-none md:mb-10 md:mt-3 md:h-[672px] md:justify-center lg:mx-24 lg:h-full lg:py-10">
-          <form className="flex flex-col items-start gap-y-4">
-            <h1 className="text-3xl font-black sm:text-5xl">رزرو اتاق</h1>
-            <span className="flex w-full flex-col gap-y-5">
-              <span className="flex gap-x-2">
-                <label className="text-gray-600">تاریخ ورود:</label>
+        <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
+          <section className="mx-auto mb-10 mt-3 flex  w-fit select-none flex-col items-center justify-center rounded-lg  px-10 py-5 sm:mt-0 sm:bg-none md:mb-10 md:mt-3 md:h-[672px] md:justify-center lg:mx-24 lg:h-full lg:py-10">
+            <img src={calendar} alt="calendar" className="max-w-[150px]" />
+            <h1 className="mb-3 text-3xl font-black sm:text-5xl">رزرو اتاق</h1>
+            <form className="flex flex-col items-start gap-y-4">
+              <span className="flex w-full flex-col gap-y-5">
+                <span className="flex gap-x-2">
+                  <label className="text-gray-600">تاریخ ورود:</label>
+                  <input
+                    type="date"
+                    className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
+                    onChange={arrivalDateHandler}
+                  />
+                </span>
+                <span className="flex gap-x-2">
+                  <label className="text-gray-600">تاریخ خروج:</label>
+                  <input
+                    type="date"
+                    className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
+                    onChange={departureDateHandler}
+                  />
+                </span>
+              </span>
+              <span className="flex gap-x-4">
+                <label className="text-gray-600">تعداد نفرات:</label>
                 <input
-                  type="date"
-                  className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
-                  onChange={arrivalDateHandler}
+                  type="number"
+                  min="1"
+                  max="10"
+                  defaultValue={0}
+                  className=" w-12 rounded-lg py-1 text-center shadow-inner shadow-black/30"
+                  onChange={numberOfPeopleHandler}
                 />
               </span>
-              <span className="flex gap-x-2">
-                <label className="text-gray-600">تاریخ خروج:</label>
-                <input
-                  type="date"
-                  className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
-                  onChange={departureDateHandler}
-                />
+              <span className="flex gap-x-4">
+                <label for="room">نوع اتاق:</label>
+                <select
+                  className="rounded-lg border-none py-1 text-center shadow-inner shadow-black/30"
+                  onChange={roomTypeHandler}
+                >
+                  <option value="" disabled selected>
+                    نوع اتاق را انتخاب کنید
+                  </option>
+                  <option value="اتاق استاندارد">اتاق استاندارد</option>
+                  <option value="اتاق دوتخته">اتاق دوتخته</option>
+                  <option value="سوئیت">سوئیت</option>
+                  <option value="لوکس">لوکس</option>
+                  <option value="مهمانی">مهمانی</option>
+                </select>
               </span>
-            </span>
-            <span className="flex gap-x-4">
-              <label className="text-gray-600">تعداد نفرات:</label>
-              <input
-                type="number"
-                min="1"
-                max="10"
-                defaultValue={0}
-                className=" w-12 rounded-lg py-1 text-center shadow-inner shadow-black/30"
-                onChange={numberOfPeopleHandler}
-              />
-            </span>
-            <span className="flex gap-x-4">
-              <label for="room">نوع اتاق:</label>
-              <select
-                className="rounded-lg border-none py-1 text-center shadow-inner shadow-black/30"
-                onChange={roomTypeHandler}
-              >
-                <option value="" disabled selected>
-                  نوع اتاق را انتخاب کنید
-                </option>
-                <option value="اتاق استاندارد">اتاق استاندارد</option>
-                <option value="اتاق دوتخته">اتاق دوتخته</option>
-                <option value="سوئیت">سوئیت</option>
-                <option value="لوکس">لوکس</option>
-                <option value="مهمانی">مهمانی</option>
-              </select>
-            </span>
-          </form>
-          <button
-            onClick={reservationHandler}
-            className="mt-3 h-8 w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-1 text-center text-white hover:bg-blue-700 sm:w-[301px]"
-          >
-            مرحله بعد
-          </button>
-        </section>
+            </form>
+            <button
+              onClick={reservationHandler}
+              className="mt-3 w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
+            >
+              مرحله بعد
+            </button>
+          </section>
+        </div>
       </>
     )
   } else {
     return (
       <>
-        <div className="flex h-[420px] flex-col items-center justify-center gap-y-5 px-2">
-          <span className="text-center font-bold lg:text-3xl">
-            لطفا برای رزرو اتاق در هتل وارد سایت شوید !
-          </span>
+        <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
+          <div className="flex h-[420px] flex-col items-center justify-center gap-y-5 px-2">
+            <span className="text-center font-bold lg:text-3xl">
+              لطفا برای رزرو اتاق در هتل وارد سایت شوید !
+            </span>
 
-          <Link
-            to="/SignIn"
-            className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-3 text-center font-bold text-white hover:bg-blue-700 sm:w-[301px] lg:text-2xl"
-          >
-            ورود به سایت
-          </Link>
+            <Link
+              to="/SignIn"
+              className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-3 text-center font-bold text-white hover:bg-blue-700 sm:w-[301px] lg:text-2xl"
+            >
+              ورود به سایت
+            </Link>
+          </div>
         </div>
       </>
     )

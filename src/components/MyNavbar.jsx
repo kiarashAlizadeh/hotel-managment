@@ -12,6 +12,7 @@ import Offcanvas from "react-bootstrap/Offcanvas"
 import logo from "../assets/icons/navbar/logo.svg"
 import person from "../assets/icons/navbar/person.png"
 import phone from "../assets/icons/navbar/phone.svg"
+import exit from "../assets/icons/navbar/exit.png"
 
 function MyNavbar() {
   var isLogin = localStorage.getItem("is-Login")
@@ -41,8 +42,12 @@ function MyNavbar() {
   const expand = "md"
   return (
     <>
-      <Navbar key={expand} expand={expand} className="w-color mb-3 bg-white">
-        <Container>
+      <Navbar
+        key={expand}
+        expand={expand}
+        className="mx-3 mb-3 rounded-full bg-[#D9EFDE] text-[#232E26]"
+      >
+        <Container className="px-60">
           <Navbar.Brand className="flex items-center gap-x-2">
             <img src={logo} alt="" />
           </Navbar.Brand>
@@ -58,7 +63,7 @@ function MyNavbar() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-start flex-grow-1 pe-3">
+              <Nav className="justify-content-start flex-grow-1 pe-3 items-center">
                 <NavLink to="/" className="nav-link">
                   صفحه اصلی
                 </NavLink>
@@ -88,36 +93,41 @@ function MyNavbar() {
                   درباره ما
                 </NavLink>
               </Nav>
-              <Nav className="flex items-center gap-x-5">
-                <Link
-                  to="tel:0211234"
-                  className="flex items-center gap-x-1 text-xl font-bold text-black"
-                >
-                  <img src={phone} alt="phone" />
-                  021-1234
-                </Link>
+              <Nav className="flex items-center gap-x-5 gap-y-3 md:gap-y-0">
+                {function () {
+                  if (isLogin) {
+                    return
+                  } else {
+                    return (
+                      <Link
+                        to="tel:0211234"
+                        className="flex items-center gap-x-1 rounded-full border-2 border-[#232E26] px-4 py-2 text-xl font-bold hover:bg-[#8fbe9b] hover:opacity-70"
+                      >
+                        <img src={phone} alt="phone" />
+                        021-1234
+                      </Link>
+                    )
+                  }
+                }}
                 {(function () {
                   if (isLogin) {
                     return (
-                      <div className="mt-2 flex flex-col items-center gap-y-3 md:mx-3 md:mt-0 md:flex-row md:gap-x-2">
+                      <div className="mt-2 flex flex-col items-center gap-y-3 md:mx-3 md:mt-0 md:flex-row md:gap-x-8">
                         <span>
                           سلام <span className="font-bold">{whoisLogin}</span>{" "}
                           خوش آمدید!
                         </span>
                         <button
-                          className="rounded-xl bg-red-600 px-3 py-2 text-white"
+                          className="flex items-center gap-x-2 rounded-full border-2 border-red-600 px-3 py-2 font-bold text-red-600 hover:bg-red-600 hover:text-white hover:opacity-80"
                           onClick={exitHandler}
                         >
-                          خروج
+                          خروج <img src={exit} alt="" className="w-8" />
                         </button>
                       </div>
                     )
                   } else {
                     return (
-                      <Link
-                        to="/SignIn"
-                        className="flex items-center gap-x-1 text-black"
-                      >
+                      <Link to="/SignIn" id="SignIn">
                         <img src={person} alt="person" />
                         ورود/ثبت نام
                       </Link>

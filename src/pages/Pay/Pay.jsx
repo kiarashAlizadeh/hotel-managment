@@ -8,6 +8,24 @@ import refresh from "../../assets/images/Pay/refresh.png"
 import shaparaklogo from "../../assets/images/Pay/shaparaklogo.png"
 
 function Pay() {
+  let storedData = JSON.parse(localStorage.getItem("user-Data"))
+  var userLogin = localStorage.getItem("user-Login")
+  let currentUser = storedData.find((user) => user.name === userLogin)
+  let lastReserve = currentUser.reserves[currentUser.reserves.length - 1]
+  const price = lastReserve.price
+
+  let userExistsIndex = storedData.findIndex((user) => user.name === userLogin)
+
+  const name = storedData[userExistsIndex].name
+  const family = storedData[userExistsIndex].family
+  const fullName = name + " " + family
+
+  let genderName = ""
+  if (storedData[userExistsIndex].gender === "آقا") {
+    genderName = " آقای" + " " + fullName
+  } else {
+    genderName = " خانم" + " " + fullName
+  }
   const cancelHandler = () => {
     Swal.fire({
       title: "آیا از انصراف مطمعن هستید؟",
@@ -789,12 +807,12 @@ function Pay() {
                   <div className="merchant-info-body">
                     <div className="merchant-info-details">
                       <div className="col-lg-12 merchant-logo">
-                        <span className="helper"></span>
+                        <span className="helper">نام مشتری: {genderName} </span>
                         <div className="ss"></div>
                       </div>
                       <ul className="col-lg-12 merchant-detail">
                         <li>
-                          <b>پذیرنده &nbsp;:&nbsp;هتل پارسيان آزادی </b>
+                          <b>پذیرنده &nbsp;:&nbsp;هتل علیزاده </b>
                         </li>
                         <b>
                           <li>
@@ -806,7 +824,7 @@ function Pay() {
                           <li>
                             سایت پذیرنده &nbsp;
                             <b className="merchantwebsite">
-                              :&nbsp; <a>https://kiarashAlizadeh.ir</a>
+                              :&nbsp; <a>https://www.AlizadehHotel.com</a>
                             </b>
                           </li>
                         </b>
@@ -819,7 +837,7 @@ function Pay() {
                           <div className="gradient"></div>
                           <li>
                             مبلغ قابل پرداخت :
-                            <b className="price-number">32,195,500ریال</b>
+                            <b className="price-number">{price} ریال </b>
                           </li>
                         </ul>
                       </b>
