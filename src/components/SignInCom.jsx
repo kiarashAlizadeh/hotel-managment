@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
@@ -9,20 +9,16 @@ function SignInCom() {
   const [Email, emailVal] = useState("")
   const [Pass, passVal] = useState("")
 
-  // refs
-  const emailRef = useRef()
-  const passRef = useRef()
-
   let storedData = localStorage.getItem("user-Data")
 
-  const valueHandler = () => {
-    emailVal(emailRef.current.value)
-    passVal(passRef.current.value)
+  const emailHandler = (e) => {
+    emailVal(e.target.value)
+  }
+  const passHandler = (e) => {
+    passVal(e.target.value)
   }
 
   const signInHandler = () => {
-    valueHandler()
-
     if (storedData) {
       let userData = JSON.parse(storedData)
       let userExists = userData.find(
@@ -129,7 +125,7 @@ function SignInCom() {
                   name="emailmobilenumber"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="ایمیل خود را وارد کنید"
-                  ref={emailRef}
+                  onChange={emailHandler}
                 />
               </span>
               <span className="w-full" x-data="{ show: true }">
@@ -141,7 +137,7 @@ function SignInCom() {
                     placeholder="رمز عبور خود را وارد کنید"
                     type="show ? 'password' : 'text'"
                     className="input block w-full  rounded-2xl px-2 py-1"
-                    ref={passRef}
+                    onChange={passHandler}
                   />
                 </div>
               </span>
