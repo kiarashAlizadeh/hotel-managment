@@ -10,6 +10,17 @@ function OtpCom() {
 
   const mobileNumber = userData[userExistsIndex].mobileNumber
 
+  function maskPhoneNumber(phoneNumber) {
+    if (phoneNumber.length !== 11) {
+      return "شماره تلفن نامعتبر است"
+    }
+
+    const maskedNumber =
+      phoneNumber.substring(0, 6) + "***" + phoneNumber.substring(9)
+    return maskedNumber
+  }
+
+  const starMobileNumber = maskPhoneNumber(mobileNumber)
   const [otpValues, setOtpValues] = useState(["", "", "", ""])
   const [otpComplete, setOtpComplete] = useState("")
   const otpFieldsRef = useRef([])
@@ -105,7 +116,7 @@ function OtpCom() {
       <div className="mb-10 mt-5 flex flex-col items-center px-5">
         <h2 className="mb-5 text-center text-xl sm:text-3xl md:text-3xl">
           کد پیامک شده به شماره
-          <br className="md:hidden" /> <bdo dir="ltr">{mobileNumber}</bdo>{" "}
+          <br className="md:hidden" /> <bdo dir="ltr">{starMobileNumber}</bdo>{" "}
           {"\u00A0"}
           <br className="md:hidden" />
           را وارد کنید:
