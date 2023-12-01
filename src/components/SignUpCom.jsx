@@ -155,7 +155,7 @@ function SignUpCom() {
             <img
               src={signup}
               alt="sign in"
-              className="mt-16 w-full sm:w-[445px] sm:rounded-l-lg "
+              className="mt-16 w-full sm:w-[445px] sm:rounded-l-lg  md:w-[600px] "
               draggable="false"
             />
           </div>
