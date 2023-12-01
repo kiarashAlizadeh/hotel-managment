@@ -16,8 +16,18 @@ function SignUpCom() {
   const [ConfirmPass, confirmPassVal] = useState("")
 
   function generateRandomNumber() {
-    const randomNumber = Math.floor(100 + Math.random() * 9999) // ایجاد یک عدد تصادفی بین 1000 تا 9999
-    return randomNumber.toString() // تبدیل عدد به رشته
+    // تولید یک عدد اعشاری بین 0 و 1
+    var random = Math.random()
+    // ضرب عدد در 10000
+    random = random * 10000
+    // گرفتن بخش صحیح عدد
+    random = Math.floor(random)
+    // اضافه کردن 1000 به عدد
+    random = random + 1000
+    // گرفتن باقیمانده تقسیم عدد بر 10000
+    random = random % 10000
+    // برگرداندن عدد تصادفی 4 رقمی
+    return random.toString()
   }
   const Otp = generateRandomNumber()
 
@@ -98,14 +108,6 @@ function SignUpCom() {
         icon: "error",
         title: "لطفا تمامی مقادیر فرم را پر کنید!",
       })
-      console.log(Name)
-      console.log(Family)
-      console.log(Gender)
-      console.log(NationalNumber)
-      console.log(MobileNumber)
-      console.log(Email)
-      console.log(Pass)
-      console.log(ConfirmPass)
     } else if (Pass !== ConfirmPass) {
       const Toast = Swal.mixin({
         toast: true,
