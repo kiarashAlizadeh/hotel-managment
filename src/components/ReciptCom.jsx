@@ -13,12 +13,12 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
   const family = userData[userExistsIndex].family
   const fullName = name + " " + family
 
-  if (userData[userExistsIndex].name === "آقا") {
-    const genderName = " آقای" + fullName
+  let genderName = ""
+  if (userData[userExistsIndex].gender === "آقا") {
+    genderName = " آقای" + " " + fullName
   } else {
-    const genderName = " خانم" + fullName
+    genderName = " خانم" + " " + fullName
   }
-
   const nationalNumber = userData[userExistsIndex].nationalNumber
   const mobileNumber = userData[userExistsIndex].mobileNumber
   const email = userData[userExistsIndex].email
@@ -58,7 +58,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">نام و نام خانوادگی:</span>
                 <span className="text-xl font-black lg:text-3xl">
-                  {fullName}
+                  {genderName}
                 </span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
@@ -126,7 +126,6 @@ function ReciptCom() {
   const printHandler = useReactToPrint({
     content: () => printRef.current,
   })
-
   return (
     <>
       <div className="mb-10 mt-7 flex flex-col items-center px-3">
