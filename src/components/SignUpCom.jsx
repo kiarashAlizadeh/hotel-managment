@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
@@ -14,27 +14,6 @@ function SignUpCom() {
   const [Email, emailVal] = useState("")
   const [Pass, passVal] = useState("")
   const [ConfirmPass, confirmPassVal] = useState("")
-
-  // refs
-  const nameRef = useRef()
-  const familyNameRef = useRef()
-  const genderRef = useRef()
-  const nationalNumberRef = useRef()
-  const mobileNumberRef = useRef()
-  const emailRef = useRef()
-  const passRef = useRef()
-  const confirmPassRef = useRef()
-
-  const valueHandler = () => {
-    nameVal(nameRef.current.value)
-    familyVal(familyNameRef.current.value)
-    genderVal(genderRef.current.value)
-    nationalNumberVal(nationalNumberRef.current.value)
-    mobileNumberVal(mobileNumberRef.current.value)
-    emailVal(emailRef.current.value)
-    passVal(passRef.current.value)
-    confirmPassVal(confirmPassRef.current.value)
-  }
 
   function generateRandomNumber() {
     const randomNumber = Math.floor(100 + Math.random() * 9999) // ایجاد یک عدد تصادفی بین 1000 تا 9999
@@ -67,8 +46,33 @@ function SignUpCom() {
     localStorage.setItem("user-Login", Name)
   }
 
+  // inputs value handler
+  const nameHandler = (e) => {
+    nameVal(e.target.value)
+  }
+  const familyNameHandler = (e) => {
+    familyVal(e.target.value)
+  }
+  const genderHandler = (e) => {
+    genderVal(e.target.value)
+  }
+  const nationalCodeHandler = (e) => {
+    nationalNumberVal(e.target.value)
+  }
+  const phoneNumberHandler = (e) => {
+    mobileNumberVal(e.target.value)
+  }
+  const emailHandler = (e) => {
+    emailVal(e.target.value)
+  }
+  const passHandler = (e) => {
+    passVal(e.target.value)
+  }
+  const confirmPassHandler = (e) => {
+    confirmPassVal(e.target.value)
+  }
+
   const signUpHandler = () => {
-    valueHandler()
     if (
       Name === "" ||
       Family === "" ||
@@ -94,6 +98,14 @@ function SignUpCom() {
         icon: "error",
         title: "لطفا تمامی مقادیر فرم را پر کنید!",
       })
+      console.log(Name)
+      console.log(Family)
+      console.log(Gender)
+      console.log(NationalNumber)
+      console.log(MobileNumber)
+      console.log(Email)
+      console.log(Pass)
+      console.log(ConfirmPass)
     } else if (Pass !== ConfirmPass) {
       const Toast = Swal.mixin({
         toast: true,
@@ -157,7 +169,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="نام"
-                  ref={nameRef}
+                  onChange={nameHandler}
                 />
               </span>
               <span className="w-full">
@@ -166,15 +178,18 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="نام خانوادگی"
-                  ref={familyNameRef}
+                  onChange={familyNameHandler}
                 />
               </span>
               <span className="flex w-full flex-col gap-x-4">
                 <label>جنسیت</label>
                 <select
                   className="rounded-2xl border-none py-1 text-center shadow-inner shadow-black/30"
-                  ref={genderRef}
+                  onChange={genderHandler}
                 >
+                  <option value="" disabled selected>
+                    جنسیت خود را انتخاب کنید
+                  </option>
                   <option value="آقا">آقا</option>
                   <option value="خانم">خانم</option>
                 </select>
@@ -185,7 +200,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="کد ملی"
-                  ref={nationalNumberRef}
+                  onChange={nationalCodeHandler}
                 />
               </span>
               <span className="w-full">
@@ -194,7 +209,7 @@ function SignUpCom() {
                   type="text"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="تلفن همراه"
-                  ref={mobileNumberRef}
+                  onChange={phoneNumberHandler}
                 />
               </span>
               <span className="w-full">
@@ -207,7 +222,7 @@ function SignUpCom() {
                   name="emailmobilenumber"
                   className="input block w-full rounded-2xl px-2 py-1"
                   placeholder="ایمیل"
-                  ref={emailRef}
+                  onChange={emailHandler}
                 />
               </span>
               <span className="w-full" x-data="{ show: true }">
@@ -219,7 +234,7 @@ function SignUpCom() {
                     placeholder="رمز عبور"
                     type="password"
                     className="input block w-full  rounded-2xl px-2 py-1"
-                    ref={passRef}
+                    onChange={passHandler}
                   />
                 </div>
               </span>
@@ -232,7 +247,7 @@ function SignUpCom() {
                     placeholder="تکرار رمز عبور"
                     type="password"
                     className="input block w-full  rounded-2xl px-2 py-1"
-                    ref={confirmPassRef}
+                    onChange={confirmPassHandler}
                   />
                 </div>
               </span>
