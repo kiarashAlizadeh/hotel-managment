@@ -11,6 +11,7 @@ function SignInCom() {
 
   let storedData = localStorage.getItem("user-Data")
 
+  // inputs value handler
   const emailHandler = (e) => {
     emailVal(e.target.value)
   }

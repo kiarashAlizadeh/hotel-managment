@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
@@ -9,25 +9,25 @@ function Reserve() {
   const [NumberOfPeople, numberOfPeopleVal] = useState("")
   const [RoomType, roomTypeVal] = useState("")
 
-  // refs
-  const arrivalDateRef = useRef()
-  const departureDateRef = useRef()
-  const numberOfPeopleRef = useRef()
-  const roomTypeRef = useRef()
-
   let storedData = localStorage.getItem("user-Data")
   var isLogin = localStorage.getItem("is-Login")
   var userLogin = localStorage.getItem("user-Login")
 
-  const valueHandler = () => {
-    arrivalDateVal(arrivalDateRef.current.value)
-    departureDateVal(departureDateRef.current.value)
-    numberOfPeopleVal(numberOfPeopleRef.current.value)
-    roomTypeVal(roomTypeRef.current.value)
+  // inputs value handler
+  const arrivalDateHandler = (e) => {
+    arrivalDateVal(e.target.value)
+  }
+  const departureDateHandler = (e) => {
+    departureDateVal(e.target.value)
+  }
+  const numberOfPeopleHandler = (e) => {
+    numberOfPeopleVal(e.target.value)
+  }
+  const roomTypeHandler = (e) => {
+    roomTypeVal(e.target.value)
   }
 
   const reservationHandler = () => {
-    valueHandler()
     if (
       ArrivalDate === "" ||
       DepartureDate === "" ||
@@ -136,7 +136,7 @@ function Reserve() {
                 <input
                   type="date"
                   className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
-                  ref={arrivalDateRef}
+                  onChange={arrivalDateHandler}
                 />
               </span>
               <span className="flex gap-x-2">
@@ -144,7 +144,7 @@ function Reserve() {
                 <input
                   type="date"
                   className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
-                  ref={departureDateRef}
+                  onChange={departureDateHandler}
                 />
               </span>
             </span>
@@ -154,17 +154,20 @@ function Reserve() {
                 type="number"
                 min="1"
                 max="10"
-                defaultValue={1}
+                defaultValue={0}
                 className=" w-12 rounded-lg py-1 text-center shadow-inner shadow-black/30"
-                ref={numberOfPeopleRef}
+                onChange={numberOfPeopleHandler}
               />
             </span>
             <span className="flex gap-x-4">
               <label for="room">نوع اتاق:</label>
               <select
                 className="rounded-lg border-none py-1 text-center shadow-inner shadow-black/30"
-                ref={roomTypeRef}
+                onChange={roomTypeHandler}
               >
+                <option value="" disabled selected>
+                  نوع اتاق را انتخاب کنید
+                </option>
                 <option value="اتاق استاندارد">اتاق استاندارد</option>
                 <option value="اتاق دوتخته">اتاق دوتخته</option>
                 <option value="سوئیت">سوئیت</option>
