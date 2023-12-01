@@ -193,7 +193,7 @@ function Reserve() {
   } else {
     return (
       <>
-        <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
+        <div className="mx-2 my-8 rounded-3xl bg-[#D9EFDE]">
           <div className="flex h-[420px] flex-col items-center justify-center gap-y-5 px-2">
             <span className="text-center font-bold lg:text-3xl">
               لطفا برای رزرو اتاق در هتل وارد سایت شوید !

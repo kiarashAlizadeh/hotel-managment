@@ -22,7 +22,7 @@ function Footer() {
         className="flex w-full select-none flex-col bg-[#232E26] pb-3 pt-5 text-white"
       >
         <div className="flex flex-col items-start px-5 ">
-          <div className="flex flex-col sm:flex-row w-full sm:flex-wrap items-center gap-5 sm:justify-between">
+          <div className="flex w-full flex-col items-center gap-5 sm:flex-row sm:flex-wrap sm:justify-between">
             <span className="flex flex-col items-center md:items-start">
               <span className="flex max-w-[350px] flex-col gap-y-4 text-justify leading-7">
                 <img src={logo} alt="logo" className="w-48" draggable="false" />
@@ -67,7 +67,7 @@ function Footer() {
               </span>
             </span>
             <div className="flex flex-wrap items-center justify-center gap-10">
-              <ul className="flex flex-col items-center gap-1 justify-center text-center pr-0">
+              <ul className="flex flex-col items-center justify-center gap-1 pr-0 text-center">
                 <li className="mb-2 text-2xl font-black">امکانات و خدمات</li>
                 <li>
                   <Link to="/Courses">رستوران</Link>

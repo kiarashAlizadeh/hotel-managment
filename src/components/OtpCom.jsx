@@ -117,55 +117,57 @@ function OtpCom() {
 
   return (
     <>
-      <div className="mb-10 mt-5 flex flex-col items-center px-5">
-        <h2 className="mb-5 text-center text-xl sm:text-3xl md:text-3xl">
-          کد پیامک شده به شماره
-          <br className="md:hidden" /> <bdo dir="ltr">{starMobileNumber}</bdo>{" "}
-          {"\u00A0"}
-          <br className="md:hidden" />
-          را وارد کنید:
-        </h2>
-        <div dir="ltr" className="flex flex-row justify-center gap-x-4">
-          {otpValues.map((value, index) => (
-            <input
-              name="otp1"
-              type="number"
-              autoComplete="off"
-              className="w-10 rounded-xl px-2 py-1 text-center sm:h-16 sm:w-16 sm:text-xl md:h-24 md:w-24 md:text-3xl"
-              value={value}
-              onChange={(e) => handleInput(index, e.target.value)}
-              onKeyDown={(e) => {
-                handleKeyPress(e)
-                if (e.key === "Backspace") {
-                  handleBackspace(index)
+      <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
+        <div className="mb-10 mt-5 flex flex-col items-center px-5">
+          <h2 className="mb-5 text-center text-xl sm:text-3xl md:text-3xl">
+            کد پیامک شده به شماره
+            <br className="md:hidden" /> <bdo dir="ltr">{starMobileNumber}</bdo>{" "}
+            {"\u00A0"}
+            <br className="md:hidden" />
+            را وارد کنید:
+          </h2>
+          <div dir="ltr" className="flex flex-row justify-center gap-x-4">
+            {otpValues.map((value, index) => (
+              <input
+                name="otp1"
+                type="number"
+                autoComplete="off"
+                className="w-10 rounded-xl bg-slate-300 px-2 py-1 text-center focus:bg-white sm:h-16 sm:w-16 sm:text-xl md:h-24 md:w-24 md:text-3xl"
+                value={value}
+                onChange={(e) => handleInput(index, e.target.value)}
+                onKeyDown={(e) => {
+                  handleKeyPress(e)
+                  if (e.key === "Backspace") {
+                    handleBackspace(index)
+                  }
+                }}
+                ref={(ref) => {
+                  otpFieldsRef.current[index] = ref
+                }}
+                tabIndex="1"
+                maxLength="1"
+                key={index}
+                disabled={
+                  index !== 0 &&
+                  otpValues[index - 1] === "" &&
+                  otpValues[index] === ""
                 }
-              }}
-              ref={(ref) => {
-                otpFieldsRef.current[index] = ref
-              }}
-              tabIndex="1"
-              maxLength="1"
-              key={index}
-              disabled={
-                index !== 0 &&
-                otpValues[index - 1] === "" &&
-                otpValues[index] === ""
-              }
-              autoFocus={index === 0}
-            />
-          ))}
+                autoFocus={index === 0}
+              />
+            ))}
+          </div>
+          <button
+            className={`mt-4 w-full cursor-pointer rounded-lg px-2 py-2 text-center text-white sm:w-[301px] lg:w-[429px] lg:text-3xl ${
+              otpComplete.length !== 4
+                ? "disabled cursor-not-allowed bg-gray-400"
+                : "bg-blue-500 hover:bg-blue-700"
+            }`}
+            disabled={otpComplete.length !== 4}
+            onClick={otpHandler}
+          >
+            ثبت
+          </button>
         </div>
-        <button
-          className={`mt-4 w-full cursor-pointer rounded-lg px-2 py-2 text-center text-white sm:w-[301px] lg:w-[429px] lg:text-3xl ${
-            otpComplete.length !== 4
-              ? "disabled cursor-not-allowed bg-gray-400"
-              : "bg-blue-500 hover:bg-blue-700"
-          }`}
-          disabled={otpComplete.length !== 4}
-          onClick={otpHandler}
-        >
-          ثبت
-        </button>
       </div>
     </>
   )
