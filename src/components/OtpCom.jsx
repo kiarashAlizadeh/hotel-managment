@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Swal from "sweetalert2"
 
 function OtpCom() {
@@ -9,6 +9,7 @@ function OtpCom() {
   let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
 
   const mobileNumber = userData[userExistsIndex].mobileNumber
+  const otp = userData[userExistsIndex].otp
 
   function maskPhoneNumber(phoneNumber) {
     if (phoneNumber.length !== 11) {
@@ -24,7 +25,6 @@ function OtpCom() {
   const [otpValues, setOtpValues] = useState(["", "", "", ""])
   const [otpComplete, setOtpComplete] = useState("")
   const otpFieldsRef = useRef([])
-  const otpCorrect = "9876" // متغیر برای کد otp صحیح
 
   const handleInput = (index, value) => {
     if (value.length > 1) {
@@ -58,7 +58,7 @@ function OtpCom() {
   }
 
   const validateOtpComplete = () => {
-    if (otpComplete === otpCorrect) {
+    if (otpComplete === otp) {
       return true
     }
     return false
@@ -110,6 +110,10 @@ function OtpCom() {
       otpHandler()
     }
   }
+
+  useEffect(() => {
+    alert(`رمز پیامک ورود به سایت : ${otp}`)
+  }, [])
 
   return (
     <>

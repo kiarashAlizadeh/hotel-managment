@@ -36,6 +36,12 @@ function SignUpCom() {
     confirmPassVal(confirmPassRef.current.value)
   }
 
+  function generateRandomNumber() {
+    const randomNumber = Math.floor(100 + Math.random() * 9999) // ایجاد یک عدد تصادفی بین 1000 تا 9999
+    return randomNumber.toString() // تبدیل عدد به رشته
+  }
+  const Otp = generateRandomNumber()
+
   const localStorageHandler = () => {
     let storedData = localStorage.getItem("user-Data")
     let userData = []
@@ -52,6 +58,7 @@ function SignUpCom() {
       mobileNumber: MobileNumber,
       email: Email,
       password: Pass,
+      otp: Otp,
       reserves: [],
     })
     let jsonData = JSON.stringify(userData)
