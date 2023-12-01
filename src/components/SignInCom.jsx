@@ -102,7 +102,7 @@ function SignInCom() {
 
   return (
     <>
-      <main>
+      <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
         <section className="mx-auto mb-10 mt-3 flex w-fit select-none flex-col items-center justify-center rounded-lg md:mb-10 md:mt-3 md:h-[672px] md:flex-row md:items-center">
           <div className="mx-3 mb-2 md:mx-0 md:mb-0">
             <img
@@ -124,7 +124,7 @@ function SignInCom() {
                   type="text"
                   id="emailmobilenumber"
                   name="emailmobilenumber"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="ایمیل خود را وارد کنید"
                   onChange={emailHandler}
                 />
@@ -136,14 +136,14 @@ function SignInCom() {
                 <div className="relative">
                   <input
                     placeholder="رمز عبور خود را وارد کنید"
-                    type="show ? 'password' : 'text'"
-                    className="input block w-full  rounded-2xl px-2 py-1"
+                    type="password"
+                    className="input block w-full rounded-2xl px-3 py-2 text-right hover:bg-slate-200"
                     onChange={passHandler}
                   />
                 </div>
               </span>
 
-              <span className="mb-2 flex justify-between gap-x-3">
+              <span className="mb-4 flex flex-wrap justify-center gap-x-3 ">
                 <span>
                   <input
                     type="checkbox"
@@ -161,30 +161,27 @@ function SignInCom() {
                 </span>
                 <Link
                   to="/resetPassword"
-                  className="border-b-2 border-transparent text-blue-500 hover:border-gray-400"
+                  className="text-xl font-black text-green-700 "
                 >
                   فراموشی رمز عبور
                 </Link>
               </span>
             </form>
             <button
-              className="mt-3 h-8 w-full cursor-pointer rounded-lg bg-blue-500 px-2 text-white hover:bg-blue-700 sm:w-[301px]"
+              className="w-full cursor-pointer rounded-3xl bg-[#4c7055] py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
               onClick={signInHandler}
             >
               ورود
             </button>
-            <span className="mt-3 flex gap-x-2">
+            <span className="mt-3 flex flex-wrap justify-center gap-x-2">
               هنوز اکانت ایجاد نکرده اید؟
-              <Link
-                to="/signUp"
-                className="border-b-2 border-transparent text-blue-500 hover:border-gray-400"
-              >
+              <Link to="/signUp" className="text-xl font-black text-green-700">
                 ثبت نام در سایت
               </Link>
             </span>
           </div>
         </section>
-      </main>
+      </div>
     </>
   )
 }

@@ -149,7 +149,7 @@ function SignUpCom() {
 
   return (
     <>
-      <main>
+      <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
         <section className="mx-auto mb-10 mt-3 flex w-fit select-none flex-col items-center justify-center rounded-lg md:mb-10 md:mt-3 md:flex-row-reverse md:items-center">
           <div className="mx-3 mb-2 md:mx-0 md:mb-0">
             <img
@@ -160,33 +160,31 @@ function SignUpCom() {
             />
           </div>
 
-          <div className="mb-10 flex flex-col items-start px-10 sm:mt-0 sm:bg-none md:justify-center lg:mx-24 lg:mb-0 lg:h-full lg:py-10">
+          <div className="mb-10 flex flex-col items-center gap-y-5 px-10 py-5 sm:bg-none md:justify-center lg:mx-24 lg:mb-0 lg:h-full lg:py-10">
+            <h1 className="text-3xl font-black sm:text-5xl">ثبت نام در سایت</h1>
             <form className="flex flex-col items-start gap-y-4">
-              <h1 className="text-3xl font-black sm:text-5xl">
-                ثبت نام در سایت
-              </h1>
               <span className="w-full">
-                <label className="text-gray-600">نام</label>
+                <label className="mr-3 text-gray-600">نام</label>
                 <input
                   type="text"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="نام"
                   onChange={nameHandler}
                 />
               </span>
               <span className="w-full">
-                <label className="text-gray-600">نام خانوادگی</label>
+                <label className="mr-3 text-gray-600">نام خانوادگی</label>
                 <input
                   type="text"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="نام خانوادگی"
                   onChange={familyNameHandler}
                 />
               </span>
               <span className="flex w-full flex-col gap-x-4">
-                <label>جنسیت</label>
+                <label className="mr-3 text-gray-600">جنسیت</label>
                 <select
-                  className="rounded-2xl border-none py-1 text-center shadow-inner shadow-black/30"
+                  className="rounded-2xl border-none py-2 text-center shadow-inner shadow-black/30"
                   onChange={genderHandler}
                 >
                   <option value="" disabled selected>
@@ -197,81 +195,70 @@ function SignUpCom() {
                 </select>
               </span>
               <span className="w-full">
-                <label className="text-gray-600">کد ملی</label>
+                <label className="mr-3 text-gray-600">کد ملی</label>
                 <input
                   type="text"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="کد ملی"
                   onChange={nationalCodeHandler}
                 />
               </span>
               <span className="w-full">
-                <label className="text-gray-600">تلفن همراه</label>
+                <label className="mr-3 text-gray-600">تلفن همراه</label>
                 <input
                   type="text"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="تلفن همراه"
                   onChange={phoneNumberHandler}
                 />
               </span>
               <span className="w-full">
-                <label for="emailmobilenumber" className="text-gray-600">
-                  ایمیل
-                </label>
+                <label className="mr-3 text-gray-600">ایمیل</label>
                 <input
                   type="text"
-                  id="emailmobilenumber"
-                  name="emailmobilenumber"
-                  className="input block w-full rounded-2xl px-2 py-1"
+                  className="input block w-full rounded-2xl px-3 py-2 hover:bg-slate-200"
                   placeholder="ایمیل"
                   onChange={emailHandler}
                 />
               </span>
               <span className="w-full" x-data="{ show: true }">
-                <label for="password" className="text-gray-600">
-                  رمز عبور
-                </label>
+                <label className="mr-3 text-gray-600">رمز عبور</label>
                 <div className="relative">
                   <input
                     placeholder="رمز عبور"
                     type="password"
-                    className="input block w-full  rounded-2xl px-2 py-1"
+                    className="input block w-full rounded-2xl px-3 py-2 text-right hover:bg-slate-200"
                     onChange={passHandler}
                   />
                 </div>
               </span>
               <span className="w-full" x-data="{ show: true }">
-                <label for="password" className="text-gray-600">
-                  تکرار رمز عبور
-                </label>
+                <label className="mr-3 text-gray-600">تکرار رمز عبور</label>
                 <div className="relative">
                   <input
                     placeholder="تکرار رمز عبور"
                     type="password"
-                    className="input block w-full  rounded-2xl px-2 py-1"
+                    className="input block w-full rounded-2xl px-3 py-2 text-right hover:bg-slate-200"
                     onChange={confirmPassHandler}
                   />
                 </div>
               </span>
             </form>
             <button
-              className="mt-3 h-8 w-full cursor-pointer rounded-lg bg-blue-500 px-2 text-white hover:bg-blue-700 sm:w-[301px]"
+              className="w-full cursor-pointer rounded-3xl bg-[#4c7055] py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
               onClick={signUpHandler}
             >
               ثبت نام
             </button>
-            <span className="mt-3 flex gap-x-2">
+            <span className="mt-3 flex flex-wrap justify-center gap-x-2">
               قبلا در سایت ثبت نام کرده اید ؟
-              <Link
-                to="/SignIn"
-                className="border-b-2 border-transparent text-blue-500 hover:border-gray-400"
-              >
+              <Link to="/SignIn" className="text-xl font-black text-green-700">
                 ورود به سایت
               </Link>
             </span>
           </div>
         </section>
-      </main>
+      </div>
     </>
   )
 }

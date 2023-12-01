@@ -63,7 +63,7 @@ function MyNavbar() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-start flex-grow-1 pe-3 items-center">
+              <Nav className="justify-content-start flex-grow-1 items-center pe-3">
                 <NavLink to="/" className="nav-link">
                   صفحه اصلی
                 </NavLink>
@@ -94,9 +94,14 @@ function MyNavbar() {
                 </NavLink>
               </Nav>
               <Nav className="flex items-center gap-x-5 gap-y-3 md:gap-y-0">
-                {function () {
+                {(function () {
                   if (isLogin) {
-                    return
+                    return (
+                      <span>
+                        سلام <span className="font-bold">{whoisLogin}</span> خوش
+                        آمدید!
+                      </span>
+                    )
                   } else {
                     return (
                       <Link
@@ -108,22 +113,16 @@ function MyNavbar() {
                       </Link>
                     )
                   }
-                }}
+                })()}
                 {(function () {
                   if (isLogin) {
                     return (
-                      <div className="mt-2 flex flex-col items-center gap-y-3 md:mx-3 md:mt-0 md:flex-row md:gap-x-8">
-                        <span>
-                          سلام <span className="font-bold">{whoisLogin}</span>{" "}
-                          خوش آمدید!
-                        </span>
-                        <button
-                          className="flex items-center gap-x-2 rounded-full border-2 border-red-600 px-3 py-2 font-bold text-red-600 hover:bg-red-600 hover:text-white hover:opacity-80"
-                          onClick={exitHandler}
-                        >
-                          خروج <img src={exit} alt="" className="w-8" />
-                        </button>
-                      </div>
+                      <button
+                        className="flex items-center gap-x-2 rounded-full border-2 border-red-600 px-3 py-2 font-bold text-red-600 hover:bg-red-600 hover:text-white hover:opacity-80"
+                        onClick={exitHandler}
+                      >
+                        خروج <img src={exit} alt="" className="w-8" />
+                      </button>
                     )
                   } else {
                     return (
