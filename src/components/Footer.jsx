@@ -23,7 +23,7 @@ function Footer() {
       >
         <div className="flex flex-col items-start px-5 ">
           <div className="flex w-full flex-wrap items-center gap-5 sm:justify-between">
-            <span>
+            <span className="flex flex-col items-center md:items-start">
               <span className="flex max-w-[350px] flex-col gap-y-4 text-justify leading-7">
                 <img src={logo} alt="logo" className="w-48" draggable="false" />
                 هتل علیزاده، با تاریخ درخشان و خدمات بی‌نظیر، در قلب تهران واقع
@@ -66,8 +66,8 @@ function Footer() {
                 </Link>
               </span>
             </span>
-            <div className="flex gap-10">
-              <ul className="flex flex-col items-start gap-1 sm:items-center">
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              <ul className="flex flex-col items-center gap-1">
                 <li className="mb-2 text-2xl font-black">امکانات و خدمات</li>
                 <li>
                   <Link to="/Courses">رستوران</Link>
@@ -82,7 +82,7 @@ function Footer() {
                   <Link to="/Courses">ارتباط با مدیریت</Link>
                 </li>
               </ul>
-              <ul className="flex flex-col items-start gap-1 sm:items-center">
+              <ul className="flex flex-col  items-center gap-1">
                 <li className="mb-2 text-2xl font-black">صفحات</li>
                 <li>
                   <Link to="/">صفحه اصلی</Link>

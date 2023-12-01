@@ -59,7 +59,7 @@ function MyNavbar() {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                <img src={logo} alt="" className="w-10" />
+                <img src={logo} alt="" className="w-40" />
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
