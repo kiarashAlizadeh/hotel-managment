@@ -23,6 +23,27 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
   const mobileNumber = userData[userExistsIndex].mobileNumber
   const email = userData[userExistsIndex].email
 
+  let lastReserve =
+    userData[userExistsIndex].reserves[
+      userData[userExistsIndex].reserves.length - 1
+    ]
+
+  const today = new Date()
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" }
+  const formattedDate = today.toLocaleDateString("fa-IR", options)
+
+  const arrivalDate = new Date(lastReserve.arrivalDate).toLocaleDateString(
+    "fa-IR"
+  )
+  const departureDate = new Date(lastReserve.departureDate).toLocaleDateString(
+    "fa-IR"
+  )
+  const nights = lastReserve.nights
+  const numberOfPeople = lastReserve.numberOfPeople
+  const numberOfRooms = lastReserve.numberOfRooms
+  const roomType = lastReserve.roomType
+  const price = lastReserve.price
+
   return (
     <>
       <div
@@ -54,7 +75,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تاریخ پرداخت:</span>
-                <span className="font-black">1402/09/05</span>
+                <span className="max-w-xs font-black">{formattedDate}</span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">شماره پیگیری:</span>
@@ -62,7 +83,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
               </span>
               <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
                 <span>مبلغ پرداخت شده:</span>
-                <span className="font-black">23,911,500 ریال</span>
+                <span className="font-black">{price} ریال</span>
               </span>
             </span>
           </div>
@@ -70,31 +91,27 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
             <span className="flex w-full flex-col gap-y-5">
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تاریخ ورود:</span>
-                <span className="font-black">1402/09/12</span>
+                <span className="font-black">{arrivalDate}</span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تاریخ خروج:</span>
-                <span className="font-black">1402/09/15</span>
+                <span className="font-black">{departureDate}</span>
               </span>
               <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
                 <span className="text-gray-600">مدت اقامت :</span>
-                <span className="font-black">3 شب</span>
+                <span className="font-black">{nights} شب</span>
               </span>
               <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
                 <span className="text-gray-600">تعداد نفرات:</span>
-                <span className="font-black">5 نفر</span>
-              </span>
-              <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
-                <span for="room">عنوان اتاق:</span>
-                <span className="font-black">اتاق 5 تخته سوئیت</span>
+                <span className="font-black">{numberOfPeople} نفر</span>
               </span>
               <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
                 <span for="room">نوع اتاق:</span>
-                <span className="font-black">سوئیت</span>
+                <span className="font-black">{roomType}</span>
               </span>
               <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
                 <span for="room">تعداد اتاق:</span>
-                <span className="font-black">1</span>
+                <span className="font-black">{numberOfRooms}</span>
               </span>
             </span>
           </div>

@@ -50,6 +50,50 @@ function Reserve() {
         title: "لطفا اطلاعات فرم را کامل پر کنید!",
       })
     } else {
+      const calculateNights = () => {
+        const arrivalDate = new Date(ArrivalDate)
+        const departureDate = new Date(DepartureDate)
+
+        const difference = departureDate - arrivalDate
+
+        const days = difference / (1000 * 60 * 60 * 24)
+
+        return Math.floor(days)
+      }
+      const Nights = calculateNights()
+
+      function calculateRooms(people) {
+        if (people < 1 || !Number.isInteger(people)) {
+          return "Invalid input. Please enter a positive integer."
+        }
+
+        if (people === 1) {
+          return 1
+        }
+
+        return Math.ceil(people / 2)
+      }
+      const NumberOfRooms = calculateRooms(Number(NumberOfPeople))
+
+      const priceForOneNight = 5000000
+      const totalPrice = Nights * priceForOneNight * NumberOfPeople
+
+      function formatNumber(number) {
+        let numberString = number.toString()
+
+        let formattedParts = []
+
+        for (let i = numberString.length - 1; i >= 0; i--) {
+          formattedParts.unshift(numberString[i])
+
+          if ((numberString.length - i) % 3 === 0 && i !== 0) {
+            formattedParts.unshift(",")
+          }
+        }
+        return formattedParts.join("")
+      }
+      const Price = formatNumber(totalPrice)
+
       let userData = JSON.parse(storedData)
       let userExistsIndex = userData.findIndex(
         (user) => user.name === userLogin
@@ -57,8 +101,11 @@ function Reserve() {
       const newReserve = {
         arrivalDate: ArrivalDate,
         departureDate: DepartureDate,
+        nights: Nights,
         numberOfPeople: NumberOfPeople,
+        numberOfRooms: NumberOfRooms,
         roomType: RoomType,
+        price: Price,
       }
       userData[userExistsIndex].reserves.push(newReserve)
       localStorage.setItem("user-Data", JSON.stringify(userData))
