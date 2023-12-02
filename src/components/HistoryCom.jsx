@@ -32,7 +32,7 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
       return (
         <>
           <div
-            className="print-content mx-auto flex w-fit flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:justify-center lg:px-10 lg:py-10 lg:text-2xl"
+            className="print-content mx-auto flex w-fit flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:justify-center lg:px-10 lg:text-2xl"
             ref={ref}
           >
             <h1 className="mt-2 text-3xl font-black sm:text-6xl">
@@ -63,74 +63,86 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
                 {userData[userExistsIndex].reserves.map((reserve, index) => {
                   const reserveNumber = index + 1
                   const reserveTitle = `رزرو ${reserveNumber}`
-                  return (
-                    <span
-                      key={index}
-                      className="flex flex-col justify-between rounded-3xl border-2 border-[#232e26] px-3 py-3 sm:gap-y-5"
-                    >
-                      <h1 className="mx-auto mb-3 w-fit border-b-4 border-black pb-2">
-                        {reserveTitle}
-                      </h1>
-                      <span className="flex gap-x-2 gap-y-1">
-                        <span className="text-gray-600">تاریخ ورود:</span>
-                        <span className="font-black">
-                          {
-                            (arrivalDate = new Date(
-                              reserve.arrivalDate
-                            ).toLocaleDateString("fa-IR"))
-                          }
+                  {
+                    if (reserve.isPayed) {
+                      return (
+                        <span
+                          key={index}
+                          className="flex flex-col justify-between rounded-3xl border-2 border-[#232e26] px-3 py-4 sm:gap-y-5 lg:h-[640px] lg:w-[358px]"
+                        >
+                          <h1 className="mx-auto mb-3 w-fit border-b-4 border-black pb-2">
+                            {reserveTitle}
+                          </h1>
+                          <span className="flex gap-x-2 gap-y-1">
+                            <span className="text-gray-600">تاریخ ورود:</span>
+                            <span className="font-black">
+                              {
+                                (arrivalDate = new Date(
+                                  reserve.arrivalDate
+                                ).toLocaleDateString("fa-IR"))
+                              }
+                            </span>
+                          </span>
+                          <span className="flex gap-x-2 gap-y-1">
+                            <span className="text-gray-600">تاریخ خروج:</span>
+                            <span className="font-black">
+                              {
+                                (departureDate = new Date(
+                                  reserve.departureDate
+                                ).toLocaleDateString("fa-IR"))
+                              }
+                            </span>
+                          </span>
+                          <span className="flex  gap-x-2 gap-y-1">
+                            <span className="text-gray-600">مدت اقامت :</span>
+                            <span className="font-black">
+                              {reserve.nights} شب
+                            </span>
+                          </span>
+                          <span className="flex gap-x-4 gap-y-1">
+                            <span className="text-gray-600">تعداد نفرات:</span>
+                            <span className="font-black">
+                              {reserve.numberOfPeople} نفر
+                            </span>
+                          </span>
+                          <span className="flex  gap-x-4 gap-y-1">
+                            <span for="room">نوع اتاق:</span>
+                            <span className="font-black">
+                              {reserve.roomType}
+                            </span>
+                          </span>
+                          <span className="flex  gap-x-4 gap-y-1">
+                            <span for="room">تعداد اتاق:</span>
+                            <span className="font-black">
+                              {reserve.numberOfRooms}
+                            </span>
+                          </span>
+                          <span className="flexgap-x-2 gap-y-1">
+                            <span className="text-gray-600">تاریخ پرداخت:</span>
+                            <span className="max-w-xs font-black">
+                              {
+                                (payDay = new Date(
+                                  reserve.payDay
+                                ).toLocaleDateString("fa-IR"))
+                              }
+                            </span>
+                          </span>
+                          <span className="flex gap-x-2 gap-y-1 ">
+                            <span className="text-gray-600">شماره پیگیری:</span>
+                            <span className="font-black">
+                              {reserve.payNumber}
+                            </span>
+                          </span>
+                          <span className="flex  flex-wrap gap-x-4 gap-y-1">
+                            <span>مبلغ پرداخت شده:</span>
+                            <span className="font-black">
+                              {reserve.price} ریال
+                            </span>
+                          </span>
                         </span>
-                      </span>
-                      <span className="flex gap-x-2 gap-y-1">
-                        <span className="text-gray-600">تاریخ خروج:</span>
-                        <span className="font-black">
-                          {
-                            (departureDate = new Date(
-                              reserve.departureDate
-                            ).toLocaleDateString("fa-IR"))
-                          }
-                        </span>
-                      </span>
-                      <span className="flex  gap-x-2 gap-y-1">
-                        <span className="text-gray-600">مدت اقامت :</span>
-                        <span className="font-black">{reserve.nights} شب</span>
-                      </span>
-                      <span className="flex gap-x-4 gap-y-1">
-                        <span className="text-gray-600">تعداد نفرات:</span>
-                        <span className="font-black">
-                          {reserve.numberOfPeople} نفر
-                        </span>
-                      </span>
-                      <span className="flex  gap-x-4 gap-y-1">
-                        <span for="room">نوع اتاق:</span>
-                        <span className="font-black">{reserve.roomType}</span>
-                      </span>
-                      <span className="flex  gap-x-4 gap-y-1">
-                        <span for="room">تعداد اتاق:</span>
-                        <span className="font-black">
-                          {reserve.numberOfRooms}
-                        </span>
-                      </span>
-                      <span className="flexgap-x-2 gap-y-1">
-                        <span className="text-gray-600">تاریخ پرداخت:</span>
-                        <span className="max-w-xs font-black">
-                          {
-                            (payDay = new Date(
-                              reserve.payDay
-                            ).toLocaleDateString("fa-IR"))
-                          }
-                        </span>
-                      </span>
-                      <span className="flex gap-x-2 gap-y-1 ">
-                        <span className="text-gray-600">شماره پیگیری:</span>
-                        <span className="font-black">{reserve.payNumber}</span>
-                      </span>
-                      <span className="flex  flex-wrap gap-x-4 gap-y-1">
-                        <span>مبلغ پرداخت شده:</span>
-                        <span className="font-black">{reserve.price} ریال</span>
-                      </span>
-                    </span>
-                  )
+                      )
+                    }
+                  }
                 })}
               </di>
             </div>
@@ -185,7 +197,7 @@ function HistoryCom() {
       <div className="mx-2 mb-5 rounded-3xl bg-[#D9EFDE] py-3">
         <div className="mb-10 mt-7 flex flex-col items-center px-3">
           {isLogin && userData[userExistsIndex].reserves.length > 0 ? (
-            <img src={history} alt="" className="lg:max-w-64 w-28" />
+            <img src={history} alt="" className="w-28 lg:max-w-5xl" />
           ) : null}
           <ComponentToPrint ref={printHistoryRef} />
           {isLogin && userData[userExistsIndex].reserves.length > 0 ? (

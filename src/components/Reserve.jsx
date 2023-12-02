@@ -40,7 +40,7 @@ function Reserve() {
   let departureDate = new Date(DepartureDate)
   departureDate.setDate(departureDate.getDate())
 
-  const today = new Date().toISOString().split("T")[0]
+  // const today = new Date().toISOString().split("T")[0]
 
   const reservationHandler = () => {
     if (
@@ -104,6 +104,7 @@ function Reserve() {
       }
       const totalPrice = Nights * priceForOneNight * NumberOfPeople
 
+      // price separator
       function formatNumber(number) {
         let numberString = number.toString()
 
@@ -127,6 +128,7 @@ function Reserve() {
 
       const PayDay = new Date()
 
+      // otp generator
       function generateRandomNumber() {
         const randomNumber = Math.floor(1000000 + Math.random() * 9000000) // ایجاد یک عدد تصادفی بین 1000000 تا 9999999
         return randomNumber.toString() // تبدیل عدد به رشته

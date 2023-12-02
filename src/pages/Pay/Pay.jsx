@@ -41,10 +41,13 @@ function Pay() {
     })
   }
   const payHandler = () => {
-    const StoredData = (storedData[userExistsIndex].reserves[
-      lastReserve
-    ].isPayed = true)
-    localStorage.setItem("user-Data", JSON.stringify(StoredData))
+    // const StoredData = (storedData[userExistsIndex].reserves[lastReserve].isPayed = "true")
+    // localStorage.setItem("user-Data", JSON.stringify(StoredData))
+    storedData[userExistsIndex].reserves[
+      currentUser.reserves.length - 1
+    ].isPayed = true
+
+    localStorage.setItem("user-Data", JSON.stringify(storedData))
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -58,7 +61,7 @@ function Pay() {
     })
     Toast.fire({
       icon: "success",
-      title: "پرداخت با موفیت انجام شد!",
+      title: "پرداخت با موفقیت انجام شد!",
     })
     setTimeout(() => {
       window.location.assign("/Receipt")

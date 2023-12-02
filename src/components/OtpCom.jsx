@@ -117,7 +117,7 @@ function OtpCom() {
 
   return (
     <>
-      <div className="mx-2 rounded-3xl bg-[#D9EFDE]">
+      <div className="mx-2 rounded-3xl bg-[#adbdb0]">
         <div className="mb-10 mt-5 flex flex-col items-center px-5">
           <h2 className="mb-5 text-center text-xl sm:text-3xl md:text-3xl">
             کد پیامک شده به شماره
@@ -132,7 +132,7 @@ function OtpCom() {
                 name="otp1"
                 type="number"
                 autoComplete="off"
-                className="w-10 rounded-xl bg-slate-300 px-2 py-1 text-center focus:bg-white sm:h-16 sm:w-16 sm:text-xl md:h-24 md:w-24 md:text-3xl"
+                className="h-12 w-10 rounded-xl px-2  py-1 text-center text-xl font-semibold focus:bg-white sm:h-16 sm:w-16 md:h-24 md:w-24 md:text-3xl"
                 value={value}
                 onChange={(e) => handleInput(index, e.target.value)}
                 onKeyDown={(e) => {
@@ -157,11 +157,12 @@ function OtpCom() {
             ))}
           </div>
           <button
-            className={`mt-4 w-full cursor-pointer rounded-lg px-2 py-2 text-center text-white sm:w-[301px] lg:w-[429px] lg:text-3xl ${
+            className={`mt-4 w-full cursor-pointer rounded-3xl px-2 py-3 text-center text-white sm:w-[301px] lg:text-3xl ${
               otpComplete.length !== 4
                 ? "disabled cursor-not-allowed bg-gray-400"
-                : "bg-blue-500 hover:bg-blue-700"
+                : "bg-[#4c7055] hover:bg-[#2e4b35]"
             }`}
+            // mt-3 w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl
             disabled={otpComplete.length !== 4}
             onClick={otpHandler}
           >
