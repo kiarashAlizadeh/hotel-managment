@@ -45,7 +45,7 @@ function MyNavbar() {
       <Navbar
         key={expand}
         expand={expand}
-        className="mx-3 mb-3 rounded-full bg-[#D9EFDE] text-[#232E26]"
+        className="mx-3 mb-3 mt-3 rounded-full bg-[#c4d8c9] text-[#232E26]"
       >
         <Container className="px-60">
           <Navbar.Brand className="flex items-center gap-x-2">
@@ -74,14 +74,10 @@ function MyNavbar() {
                   title="امکانات و خدمات"
                   id={`offcanvasNavbarDropdown-expand-${expand}`}
                 >
-                  <NavDropdown.Item href="#action3">رستوران</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    اکانات تفریحی
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/a">رستوران</NavDropdown.Item>
+                  <NavDropdown.Item href="/a">امکانات تفریحی</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    مراسمات
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/a">مراسمات</NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to="/History" className="nav-link">
                   تاریخچه رزرو ها
