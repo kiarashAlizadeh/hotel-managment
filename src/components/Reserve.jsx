@@ -77,7 +77,18 @@ function Reserve() {
       }
       const NumberOfRooms = calculateRooms(Number(NumberOfPeople))
 
-      const priceForOneNight = 5000000
+      let priceForOneNight = 0
+      if (RoomType === "اتاق استاندارد") {
+        priceForOneNight = 5000000
+      } else if (RoomType === "اتاق دوتخته") {
+        priceForOneNight = 7000000
+      } else if (RoomType === "سوئیت") {
+        priceForOneNight = 10000000
+      } else if (RoomType === "لوکس") {
+        priceForOneNight = 15000000
+      } else if (RoomType === "میهمانی") {
+        priceForOneNight = 25000000
+      }
       const totalPrice = Nights * priceForOneNight * NumberOfPeople
 
       function formatNumber(number) {
@@ -178,7 +189,7 @@ function Reserve() {
                   <option value="اتاق دوتخته">اتاق دوتخته</option>
                   <option value="سوئیت">سوئیت</option>
                   <option value="لوکس">لوکس</option>
-                  <option value="مهمانی">مهمانی</option>
+                  <option value="میهمانی">میهمانی</option>
                 </select>
               </span>
             </form>
