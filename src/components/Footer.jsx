@@ -119,9 +119,6 @@ function Footer() {
                 </Link>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.076402825294!2d51.33546117630501!3d35.69973742895626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8dfe05732c2e91%3A0xfcbec017befd15f4!2sAzadi%20Tower!5e0!3m2!1sen!2snl!4v1701183243562!5m2!1sen!2snl"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
                   title="azadi tower"
                   className="h-40 w-60 rounded-2xl border-none"
                 ></iframe>

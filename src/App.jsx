@@ -10,6 +10,8 @@ import Confirmation from "./pages/Confirmation"
 import Pay from "./pages/Pay/Pay"
 import Receipt from "./pages/Receipt"
 import History from "./pages/History"
+import ContactUs from "./pages/ContactUs"
+import AboutUs from "./pages/AboutUs"
 import NotFound from "./pages/NotFound"
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="/Pay" element={<Pay />} />
         <Route path="/Receipt" element={<Receipt />} />
         <Route path="/History" element={<History />} />
+        <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -74,22 +74,22 @@ function MyNavbar() {
                   title="امکانات و خدمات"
                   id={`offcanvasNavbarDropdown-expand-${expand}`}
                 >
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action3">رستوران</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">
-                    Another action
+                    اکانات تفریحی
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">
-                    Something else here
+                    مراسمات
                   </NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to="/History" className="nav-link">
                   تاریخچه رزرو ها
                 </NavLink>
-                <NavLink to="/a" className="nav-link">
+                <NavLink to="/ContactUs" className="nav-link">
                   تماس با ما
                 </NavLink>
-                <NavLink to="/a" className="nav-link">
+                <NavLink to="/AboutUs" className="nav-link">
                   درباره ما
                 </NavLink>
               </Nav>
