@@ -1,5 +1,10 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+
+import DatePicker from "react-multi-date-picker"
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+
 import Swal from "sweetalert2"
 
 import calendar from "../assets/images/reserve.png"
@@ -16,11 +21,12 @@ function Reserve() {
   var userLogin = localStorage.getItem("user-Login")
 
   // inputs value handler
-  const arrivalDateHandler = (e) => {
-    arrivalDateVal(e.target.value)
+  const arrivalDateHandler = (value) => {
+    arrivalDateVal(value)
   }
-  const departureDateHandler = (e) => {
-    departureDateVal(e.target.value)
+
+  const departureDateHandler = (value) => {
+    departureDateVal(value)
   }
   const numberOfPeopleHandler = (e) => {
     numberOfPeopleVal(e.target.value)
@@ -28,6 +34,13 @@ function Reserve() {
   const roomTypeHandler = (e) => {
     roomTypeVal(e.target.value)
   }
+
+  let arrivalDate = new Date(ArrivalDate)
+  arrivalDate.setDate(arrivalDate.getDate() + 1)
+  let departureDate = new Date(DepartureDate)
+  departureDate.setDate(departureDate.getDate())
+
+  const today = new Date().toISOString().split("T")[0]
 
   const reservationHandler = () => {
     if (
@@ -150,19 +163,60 @@ function Reserve() {
               <span className="flex w-full flex-col gap-y-5">
                 <span className="flex gap-x-2">
                   <label className="text-gray-600">تاریخ ورود:</label>
-                  <input
+                  {/* <input
                     type="date"
                     className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
                     onChange={arrivalDateHandler}
+                    min={today}
+                  /> */}
+                  <DatePicker
+                    calendar={persian}
+                    locale={persian_fa}
+                    calendarPosition="bottom-right"
+                    value={ArrivalDate}
+                    onChange={arrivalDateHandler}
+                    placeholder="تاریخ ورود"
+                    editable={false}
+                    disableYearPicker
+                    formatMonth={(month, year) => {
+                      return "ماه " + month
+                    }}
+                    formatYear={(year, month) => {
+                      return "سال " + year
+                    }}
+                    maxDate={departureDate}
+                    monthYearSeparator="|"
+                    minDate={new Date()}
+                    inputClass="rounded-lg px-2 py-1 shadow-inner shadow-black/30 text-center w-32"
                   />
                 </span>
                 <span className="flex gap-x-2">
                   <label className="text-gray-600">تاریخ خروج:</label>
-                  <input
-                    type="date"
-                    className="input rounded-lg px-2 py-1 shadow-inner shadow-black/30"
+                  <DatePicker
+                    calendar={persian}
+                    locale={persian_fa}
+                    calendarPosition="bottom-right"
+                    value={DepartureDate}
                     onChange={departureDateHandler}
+                    placeholder="تاریخ خروج"
+                    editable={false}
+                    disableYearPicker
+                    formatMonth={(month, year) => {
+                      return "ماه " + month
+                    }}
+                    formatYear={(year, month) => {
+                      return "سال " + year
+                    }}
+                    monthYearSeparator="|"
+                    minDate={arrivalDate}
+                    inputClass="rounded-lg px-2 py-1 shadow-inner shadow-black/30 text-center w-32"
                   />
+                  {/* <input
+                    type="date"
+                    className="input w-32 rounded-lg px-2 py-1 shadow-inner shadow-black/30"
+                    onChange={departureDateHandler}
+                    min={today}
+                  /> */}
                 </span>
               </span>
               <span className="flex gap-x-4">

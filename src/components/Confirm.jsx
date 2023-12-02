@@ -1,5 +1,9 @@
 import Swal from "sweetalert2"
 
+import { Calendar } from "react-multi-date-picker"
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+
 import confirm from "../assets/images/confirm.png"
 
 function Confirm() {
@@ -54,6 +58,17 @@ function Confirm() {
                 <span className="text-gray-600">تاریخ خروج:</span>
                 <span>{departureDate}</span>
               </span>
+              <Calendar
+                value={[arrivalDate, departureDate]}
+                range
+                readOnly
+                minDate={new Date()}
+                disableMonthPicker
+                disableYearPicker
+                calendar={persian}
+                locale={persian_fa}
+                calendarPosition="bottom-right"
+              />
               <span className="flex gap-x-2">
                 <span className="text-gray-600">مدت اقامت :</span>
                 <span>{nights} شب</span>
