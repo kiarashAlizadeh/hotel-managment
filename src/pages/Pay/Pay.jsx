@@ -11,10 +11,10 @@ function Pay() {
   let storedData = JSON.parse(localStorage.getItem("user-Data"))
   var userLogin = localStorage.getItem("user-Login")
   let currentUser = storedData.find((user) => user.name === userLogin)
+  let userExistsIndex = storedData.findIndex((user) => user.name === userLogin)
   let lastReserve = currentUser.reserves[currentUser.reserves.length - 1]
   const price = lastReserve.price
-
-  let userExistsIndex = storedData.findIndex((user) => user.name === userLogin)
+  let isPayed = lastReserve.isPayed
 
   const name = storedData[userExistsIndex].name
   const family = storedData[userExistsIndex].family
@@ -41,6 +41,10 @@ function Pay() {
     })
   }
   const payHandler = () => {
+    const StoredData = (storedData[userExistsIndex].reserves[
+      lastReserve
+    ].isPayed = true)
+    localStorage.setItem("user-Data", JSON.stringify(StoredData))
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",

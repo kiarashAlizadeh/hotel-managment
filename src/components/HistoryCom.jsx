@@ -4,142 +4,160 @@ import { Link } from "react-router-dom"
 
 import history from "../assets/images/history.png"
 
+var isLogin = localStorage.getItem("is-Login")
+let storedData = localStorage.getItem("user-Data")
+var userLogin = localStorage.getItem("user-Login")
+let userData = JSON.parse(storedData)
+let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
 const ComponentToPrint = React.forwardRef((props, ref) => {
-  var isLogin = localStorage.getItem("is-Login")
   if (isLogin) {
-    let storedData = localStorage.getItem("user-Data")
-    var userLogin = localStorage.getItem("user-Login")
-    let userData = JSON.parse(storedData)
-    let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
+    if (userData[userExistsIndex].reserves.length > 0) {
+      const name = userData[userExistsIndex].name
+      const family = userData[userExistsIndex].family
+      const fullName = name + " " + family
+      let arrivalDate = ""
+      let departureDate = ""
+      let payDay = ""
+      let genderName = ""
+      if (userData[userExistsIndex].gender === "آقا") {
+        genderName = " آقای" + " " + fullName
+      } else {
+        genderName = " خانم" + " " + fullName
+      }
 
-    const name = userData[userExistsIndex].name
-    const family = userData[userExistsIndex].family
-    const fullName = name + " " + family
-    let arrivalDate = ""
-    let departureDate = ""
-    let payDay = ""
-    let genderName = ""
-    if (userData[userExistsIndex].gender === "آقا") {
-      genderName = " آقای" + " " + fullName
-    } else {
-      genderName = " خانم" + " " + fullName
-    }
+      const nationalNumber = userData[userExistsIndex].nationalNumber
+      const mobileNumber = userData[userExistsIndex].mobileNumber
+      const email = userData[userExistsIndex].email
 
-    const nationalNumber = userData[userExistsIndex].nationalNumber
-    const mobileNumber = userData[userExistsIndex].mobileNumber
-    const email = userData[userExistsIndex].email
-
-    return (
-      <>
-        <div
-          className="print-content mx-auto flex w-fit flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:justify-center lg:px-10 lg:py-10 lg:text-2xl"
-          ref={ref}
-        >
-          <h1 className="mt-2 text-3xl font-black sm:text-6xl">
-            تاریخچه رزرو ها
-          </h1>
-          <div className="mb-5 mt-2 flex flex-col items-center gap-y-10">
-            <span className="flex flex-col flex-wrap gap-x-5 md:flex-row">
-              <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                <span className="text-gray-600">نام و نام خانوادگی:</span>
-                <span className="text-xl font-black lg:text-3xl">
-                  {genderName}
+      return (
+        <>
+          <div
+            className="print-content mx-auto flex w-fit flex-col items-center justify-center rounded-lg px-2 text-base sm:mt-0 sm:bg-none md:mt-3 md:justify-center lg:px-10 lg:py-10 lg:text-2xl"
+            ref={ref}
+          >
+            <h1 className="mt-2 text-3xl font-black sm:text-6xl">
+              تاریخچه رزرو ها
+            </h1>
+            <div className="mb-5 mt-2 flex flex-col items-center gap-y-10">
+              <span className="flex flex-col flex-wrap gap-x-5 md:flex-row">
+                <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                  <span className="text-gray-600">نام و نام خانوادگی:</span>
+                  <span className="text-xl font-black lg:text-3xl">
+                    {genderName}
+                  </span>
+                </span>
+                <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                  <span className="text-gray-600">کد ملی:</span>
+                  <span className="font-black">{nationalNumber}</span>
+                </span>
+                <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                  <span className="text-gray-600">تلفن همراه:</span>
+                  <span className="font-black">{mobileNumber}</span>
+                </span>
+                <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                  <span className="text-gray-600">ایمیل:</span>
+                  <span className="font-bold lg:font-black">{email} </span>
                 </span>
               </span>
-              <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                <span className="text-gray-600">کد ملی:</span>
-                <span className="font-black">{nationalNumber}</span>
-              </span>
-              <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                <span className="text-gray-600">تلفن همراه:</span>
-                <span className="font-black">{mobileNumber}</span>
-              </span>
-              <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                <span className="text-gray-600">ایمیل:</span>
-                <span className="font-bold lg:font-black">{email} </span>
-              </span>
-            </span>
-            <div className="flex w-full flex-wrap items-center justify-center gap-20">
-              {userData[userExistsIndex].reserves.map((reserve) => {
-                return (
-                  <span className="flex flex-col gap-y-5 rounded-3xl border-2 border-[#232e26] px-3 py-3">
-                    <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">تاریخ ورود:</span>
-                      <span className="font-black">
-                        {
-                          (arrivalDate = new Date(
-                            reserve.arrivalDate
-                          ).toLocaleDateString("fa-IR"))
-                        }
+              <div className="flex w-full flex-wrap items-center justify-center gap-20">
+                {userData[userExistsIndex].reserves.map((reserve) => {
+                  return (
+                    <span className="flex flex-col gap-y-5 rounded-3xl border-2 border-[#232e26] px-3 py-3">
+                      <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">تاریخ ورود:</span>
+                        <span className="font-black">
+                          {
+                            (arrivalDate = new Date(
+                              reserve.arrivalDate
+                            ).toLocaleDateString("fa-IR"))
+                          }
+                        </span>
+                      </span>
+                      <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">تاریخ خروج:</span>
+                        <span className="font-black">
+                          {
+                            (departureDate = new Date(
+                              reserve.departureDate
+                            ).toLocaleDateString("fa-IR"))
+                          }
+                        </span>
+                      </span>
+                      <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">مدت اقامت :</span>
+                        <span className="font-black">{reserve.nights} شب</span>
+                      </span>
+                      <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">تعداد نفرات:</span>
+                        <span className="font-black">
+                          {reserve.numberOfPeople} نفر
+                        </span>
+                      </span>
+                      <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
+                        <span for="room">نوع اتاق:</span>
+                        <span className="font-black">{reserve.roomType}</span>
+                      </span>
+                      <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
+                        <span for="room">تعداد اتاق:</span>
+                        <span className="font-black">
+                          {reserve.numberOfRooms}
+                        </span>
+                      </span>
+                      <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">تاریخ پرداخت:</span>
+                        <span className="max-w-xs font-black">
+                          {
+                            (payDay = new Date(
+                              reserve.payDay
+                            ).toLocaleDateString("fa-IR"))
+                          }
+                        </span>
+                      </span>
+                      <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
+                        <span className="text-gray-600">شماره پیگیری:</span>
+                        <span className="font-black">{reserve.payNumber}</span>
+                      </span>
+                      <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
+                        <span>مبلغ پرداخت شده:</span>
+                        <span className="font-black">{reserve.price} ریال</span>
                       </span>
                     </span>
-                    <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">تاریخ خروج:</span>
-                      <span className="font-black">
-                        {
-                          (departureDate = new Date(
-                            reserve.departureDate
-                          ).toLocaleDateString("fa-IR"))
-                        }
-                      </span>
-                    </span>
-                    <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">مدت اقامت :</span>
-                      <span className="font-black">{reserve.nights} شب</span>
-                    </span>
-                    <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">تعداد نفرات:</span>
-                      <span className="font-black">
-                        {reserve.numberOfPeople} نفر
-                      </span>
-                    </span>
-                    <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
-                      <span for="room">نوع اتاق:</span>
-                      <span className="font-black">{reserve.roomType}</span>
-                    </span>
-                    <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
-                      <span for="room">تعداد اتاق:</span>
-                      <span className="font-black">
-                        {reserve.numberOfRooms}
-                      </span>
-                    </span>
-                    <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">تاریخ پرداخت:</span>
-                      <span className="max-w-xs font-black">
-                        {
-                          (payDay = new Date(reserve.payDay).toLocaleDateString(
-                            "fa-IR"
-                          ))
-                        }
-                      </span>
-                    </span>
-                    <span className="flex flex-col gap-x-2 gap-y-1 md:flex-row">
-                      <span className="text-gray-600">شماره پیگیری:</span>
-                      <span className="font-black">{reserve.payNumber}</span>
-                    </span>
-                    <span className="flex flex-col gap-x-4 gap-y-1 md:flex-row">
-                      <span>مبلغ پرداخت شده:</span>
-                      <span className="font-black">{reserve.price} ریال</span>
-                    </span>
-                  </span>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </>
-    )
+        </>
+      )
+    } else {
+      return (
+        <>
+          <div className="flex h-[420px] flex-col items-center justify-center gap-y-10 px-2">
+            <span className="text-center font-bold lg:text-3xl">
+              شما هیچ رزروی در گذشته انجام نداده اید!
+            </span>
+
+            <Link
+              to="/Reservation"
+              className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
+            >
+              رزرو اتاق
+            </Link>
+          </div>
+        </>
+      )
+    }
   } else {
     return (
       <>
-        <div className="flex h-[420px] flex-col items-center justify-center gap-y-5 px-2">
+        <div className="flex h-[420px] flex-col items-center justify-center gap-y-10 px-2">
           <span className="text-center font-bold lg:text-3xl">
             لطفا برای مشاهده تاریخچه رزرو اتاق ها وارد سایت شوید !
           </span>
 
           <Link
             to="/SignIn"
-            className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-3 text-center font-bold text-white hover:bg-blue-700 sm:w-[301px] lg:text-2xl"
+            className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
           >
             ورود به سایت
           </Link>
@@ -158,14 +176,18 @@ function HistoryCom() {
     <>
       <div className="mx-2 mb-5 rounded-3xl bg-[#D9EFDE] py-3">
         <div className="mb-10 mt-7 flex flex-col items-center px-3">
-          <img src={history} alt="" className="lg:max-w-64 w-28" />
+          {isLogin && userData[userExistsIndex].reserves.length > 0 ? (
+            <img src={history} alt="" className="lg:max-w-64 w-28" />
+          ) : null}
           <ComponentToPrint ref={printHistoryRef} />
-          <button
-            className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
-            onClick={printHandler}
-          >
-            چاپ تاریخچه رزرو ها
-          </button>
+          {isLogin && userData[userExistsIndex].reserves.length > 0 ? (
+            <button
+              className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
+              onClick={printHandler}
+            >
+              چاپ تاریخچه رزرو ها
+            </button>
+          ) : null}
         </div>
       </div>
     </>

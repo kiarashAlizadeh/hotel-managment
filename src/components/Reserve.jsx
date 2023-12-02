@@ -109,6 +109,7 @@ function Reserve() {
       }
       const PayNumber = generateRandomNumber()
 
+      const IsPayed = ""
       const newReserve = {
         arrivalDate: ArrivalDate,
         departureDate: DepartureDate,
@@ -119,6 +120,7 @@ function Reserve() {
         payDay: PayDay,
         payNumber: PayNumber,
         price: Price,
+        isPayed: IsPayed,
       }
       userData[userExistsIndex].reserves.push(newReserve)
       localStorage.setItem("user-Data", JSON.stringify(userData))
@@ -194,14 +196,14 @@ function Reserve() {
     return (
       <>
         <div className="mx-2 my-8 rounded-3xl bg-[#D9EFDE]">
-          <div className="flex h-[420px] flex-col items-center justify-center gap-y-5 px-2">
+          <div className="flex h-[420px] flex-col items-center justify-center gap-y-10 px-2">
             <span className="text-center font-bold lg:text-3xl">
               لطفا برای رزرو اتاق در هتل وارد سایت شوید !
             </span>
 
             <Link
               to="/SignIn"
-              className="w-full cursor-pointer rounded-lg bg-blue-500 px-2 py-3 text-center font-bold text-white hover:bg-blue-700 sm:w-[301px] lg:text-2xl"
+              className="w-full cursor-pointer rounded-3xl bg-[#4c7055] px-2 py-3 text-center text-white hover:opacity-75 sm:w-[301px] lg:text-2xl"
             >
               ورود به سایت
             </Link>
