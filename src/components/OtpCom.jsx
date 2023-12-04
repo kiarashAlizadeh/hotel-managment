@@ -130,7 +130,7 @@ function OtpCom() {
             {otpValues.map((value, index) => (
               <input
                 name="otp1"
-                type="number"
+                type="tel"
                 autoComplete="off"
                 className="h-12 w-10 rounded-xl px-2  py-1 text-center text-xl font-semibold focus:bg-white sm:h-16 sm:w-16 md:h-24 md:w-24 md:text-3xl"
                 value={value}
