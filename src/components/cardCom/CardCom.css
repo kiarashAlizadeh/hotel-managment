@@ -1,0 +1,22 @@
+.card {
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.5;
+}
+
+.card:hover {
+  scale: 1.05;
+}
+
+.card-text {
+  @apply text-justify text-gray-600;
+}
+
+.card-footer {
+  @apply text-gray-600 !important;
+}
+
+.card a {
+  text-decoration: none;
+  color: #484848;
+}

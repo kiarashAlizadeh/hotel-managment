@@ -1,6 +1,7 @@
 import MyNavbar from "../components/MyNavbar"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import Cards from "../components/Cards"
 
 // Loader import
 import useLoading from "../hooks/useLoading"
@@ -16,7 +17,8 @@ function Home() {
       ) : (
         <div className="flex h-screen flex-col justify-between">
           <MyNavbar />
-          <Header />
+          {/* <Header /> */}
+          <Cards />
           <Footer />
         </div>
       )}
