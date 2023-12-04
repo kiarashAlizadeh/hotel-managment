@@ -4,15 +4,15 @@ function useLoading() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const handleLoad = () => {
-      setIsLoading(false)
-    }
+    // const handleLoad = () => {
+    //   setIsLoading(false)
+    // }
 
-    window.addEventListener("load", handleLoad)
+    window.addEventListener("load", setIsLoading(false))
 
-    return () => {
-      window.removeEventListener("load", handleLoad)
-    }
+    // return () => {
+    //   window.removeEventListener("load", handleLoad)
+    // }
   }, [])
 
   return isLoading
