@@ -185,24 +185,24 @@
   background-size: cover;
 }
 .btn-payment {
-  width: 57%;
-  border-radius: 15px 15px 15px 15px;
-  background-color: #94d235;
-  color: white;
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.3);
+  width: 57% !important;
+  border-radius: 15px 15px 15px 15px !important;
+  background-color: #94d235 !important;
+  color: white !important;
+  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.3) !important;
 }
 
 .btn-decline {
   position: relative;
-  border-radius: 15px 15px 15px 15px;
-  width: 39%;
-  background-color: #e64c4c;
-  color: white;
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 15px 15px 15px 15px !important;
+  width: 39% !important;
+  background-color: #e64c4c !important;
+  color: white !important;
+  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.3) !important;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
+  backface-visibility: hidden !important;
 }
 
 .form-group {

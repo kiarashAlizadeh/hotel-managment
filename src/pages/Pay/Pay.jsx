@@ -212,9 +212,65 @@ function Pay() {
             </div>
           </div>
         </header>
-        <div className="body pad-top-2p container">
-          <div className="row">
-            <div className="col-md-7 order-sm-1 order-1">
+        <div className="body pad-top-2p container mt-3">
+          <div className="flex flex-wrap gap-y-5">
+            <div className="col-md-5 order-sm-12 merchant-info-parent">
+              <div className="merchant-info">
+                <div className="merchant-info-content">
+                  <div id="merchant-info-header" className="row">
+                    <div className="col title">
+                      <span>اطلاعات تراکنش</span>
+                    </div>
+                    <div className="ss"></div>
+                  </div>
+                  <div className="merchant-info-body">
+                    <div className="merchant-info-details">
+                      <div className="col-lg-12 merchant-logo">
+                        <span className="helper my-auto text-xl font-bold">
+                          نام مشتری: {genderName}{" "}
+                        </span>
+                      </div>
+                      <ul className="col-lg-12 merchant-detail">
+                        <li>
+                          <b>پذیرنده &nbsp;:&nbsp;هتل علیزاده </b>
+                        </li>
+                        <b>
+                          <li>
+                            شماره‌ پذیرنده &nbsp;<b>:&nbsp; 011277158</b>
+                          </li>
+                          <li>
+                            شماره ترمینال &nbsp;<b>:&nbsp; 11282896</b>
+                          </li>
+                          <li>
+                            سایت پذیرنده &nbsp;
+                            <b className="merchantwebsite text-sm">
+                              :&nbsp; <a>https://www.AlizadehHotel.com</a>
+                            </b>
+                          </li>
+                        </b>
+                      </ul>
+                      <ul className="col-lg-12 merchant-detail">
+                        <b> </b>
+                      </ul>
+                      <b>
+                        <ul className="col-lg-12 merchant-info-price">
+                          <div className="gradient"></div>
+                          <li>
+                            مبلغ قابل پرداخت :
+                            <b className="price-number">{price} ریال </b>
+                          </li>
+                        </ul>
+                      </b>
+                    </div>
+                    <b> </b>
+                  </div>
+                  <b> </b>
+                </div>
+                <b> </b>
+              </div>
+              <b> </b>
+            </div>
+            <div className="col-md-7 order-sm-1">
               <div className="card-info">
                 <div id="card-info-header" className="row">
                   <label className="error-container"></label>
@@ -785,15 +841,15 @@ function Pay() {
                       <div className="col-sm-4"></div>
                     </div>
                   </form>
-                  <div className="col-md-8 col-sm-8 btn-submit-form w-full">
+                  <div className="col-md-8 col-sm-8 btn-submit-form flex w-full justify-between gap-x-5">
                     <button
-                      className="btn btn-payment btn-3e icon-arrow-right"
+                      className="btn btn-payment hover:opacity-70"
                       onClick={payHandler}
                     >
                       پرداخت
                     </button>
                     <button
-                      className="btn btn-decline btn-6f"
+                      className="btn btn-decline hover:opacity-70"
                       onClick={cancelHandler}
                     >
                       <span>انصراف</span>
@@ -801,61 +857,6 @@ function Pay() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-5 order-sm-12 merchant-info-parent order-12">
-              <div className="merchant-info">
-                <div className="merchant-info-content">
-                  <div id="merchant-info-header" className="row">
-                    <div className="col title">
-                      <span>اطلاعات تراکنش</span>
-                    </div>
-                    <div className="ss"></div>
-                  </div>
-                  <div className="merchant-info-body">
-                    <div className="merchant-info-details">
-                      <div className="col-lg-12 merchant-logo">
-                        <span className="helper">نام مشتری: {genderName} </span>
-                        <div className="ss"></div>
-                      </div>
-                      <ul className="col-lg-12 merchant-detail">
-                        <li>
-                          <b>پذیرنده &nbsp;:&nbsp;هتل علیزاده </b>
-                        </li>
-                        <b>
-                          <li>
-                            شماره‌ پذیرنده &nbsp;<b>:&nbsp; 011277158</b>
-                          </li>
-                          <li>
-                            شماره ترمینال &nbsp;<b>:&nbsp; 11282896</b>
-                          </li>
-                          <li>
-                            سایت پذیرنده &nbsp;
-                            <b className="merchantwebsite">
-                              :&nbsp; <a>https://www.AlizadehHotel.com</a>
-                            </b>
-                          </li>
-                        </b>
-                      </ul>
-                      <ul className="col-lg-12 merchant-detail">
-                        <b> </b>
-                      </ul>
-                      <b>
-                        <ul className="col-lg-12 merchant-info-price">
-                          <div className="gradient"></div>
-                          <li>
-                            مبلغ قابل پرداخت :
-                            <b className="price-number">{price} ریال </b>
-                          </li>
-                        </ul>
-                      </b>
-                    </div>
-                    <b> </b>
-                  </div>
-                  <b> </b>
-                </div>
-                <b> </b>
-              </div>
-              <b> </b>
             </div>
           </div>
           <b> </b>
