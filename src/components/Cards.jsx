@@ -41,13 +41,14 @@ function Cards() {
   return (
     <>
       <div
-        className="my-10 w-full p-10"
+        className="my-10 w-full py-10"
         style={{ backgroundImage: `url(${bgCards})` }}
       >
         <Container>
-          <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4 flex justify-center text-center">
+          <h2 className="mb-4 text-center text-white">انواع اتاق های هتل</h2>
+          <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4 flex items-center justify-center text-center">
             {cardData.map((card) => (
-              <Col key={card.id} align="center">
+              <Col key={card.id} align="center" className="p-0">
                 <CardCom {...card} />
               </Col>
             ))}

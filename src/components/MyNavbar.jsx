@@ -39,7 +39,7 @@ function MyNavbar() {
       window.location.assign("/SignIn")
     }, 2000)
   }
-  const expand = "md"
+  const expand = "lg"
   return (
     <>
       <Navbar
