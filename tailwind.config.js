@@ -6,7 +6,6 @@ module.exports = {
       colors: {
         "d-blue": "#14274A",
       },
-    
     },
   },
   plugins: [],
