@@ -8,7 +8,10 @@ var isLogin = localStorage.getItem("is-Login")
 let storedData = localStorage.getItem("user-Data")
 var userLogin = localStorage.getItem("user-Login")
 let userData = JSON.parse(storedData)
-let userExistsIndex = userData.findIndex((user) => user.name === userLogin)
+let userExistsIndex
+if (userData) {
+  userExistsIndex = userData.findIndex((user) => user.name === userLogin)
+}
 const ComponentToPrint = React.forwardRef((props, ref) => {
   if (isLogin) {
     if (userData[userExistsIndex].reserves.length > 0) {
