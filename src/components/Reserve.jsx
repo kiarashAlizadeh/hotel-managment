@@ -224,7 +224,7 @@ function Reserve() {
               <span className="flex gap-x-4">
                 <label className="text-gray-600">تعداد نفرات:</label>
                 <input
-                  type="number"
+                  type="tel"
                   min="1"
                   max="10"
                   defaultValue={0}
